@@ -1,6 +1,7 @@
 name: Author Todo
 description: '[Автору] То что надо реализовать'
 labels: ['author', 'todo']
+title: '[Todo]: '
 body:
   - type: input
     attributes:
