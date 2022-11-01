@@ -27,6 +27,18 @@
 
 Есть два источника поступления задач: [наша команда][issues_by_team] и [пользователи][issues_by_client].
 
+Просмотреть issues:
+
+- [Список всех обращений, от пользователя][issues_by_client]
+  - [Отчеты по ошибкам][issues_by_client__type_bug]
+  - [Вопросы][issues_by_client__type_question]
+  - [Предложения][issues_by_client__type_suggestion]
+- [Список всех топиков от команды][issues_by_team]
+  - [Отчеты по ошибкам][issues_by_team__type_bug]
+  - [Hotfix][issues_by_team__type_hotfix]
+  - [Bugfix][issues_by_team__type_bugfix]
+  - [Задачи][issues_by_team__type_todo]
+
 ## # Отчеты об ошибках от пользователя
 
 > Заполняется пользователями приложения, которые наткнулись на ошибки.
@@ -108,7 +120,7 @@
 
 - Просмотреть можно:
   - [Список всех топиков от команды][issues_by_team].
-  - [Простые ошибки][issues_by_team__type_bug].
+  - [Отчеты по ошибкам][issues_by_team__type_bug].
   - [Hotfix][issues_by_team__type_hotfix].
   - [Bugfix][issues_by_team__type_bugfix].
 
