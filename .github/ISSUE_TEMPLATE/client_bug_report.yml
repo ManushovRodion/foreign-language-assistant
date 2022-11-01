@@ -1,5 +1,5 @@
-name: [Client] Bug Report
-description: [Пользователю] Создание отчета по найденой ошибке
+name: Client Bug Report
+description: "[Пользователю] Создание отчета по найденой ошибке"
 labels: [ "client", "bug" ]
 body:
   - type: textarea
