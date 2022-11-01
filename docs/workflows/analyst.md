@@ -2,11 +2,11 @@
 [issues_by_client__type_bug]: https://github.com/ManushovRodion/app-help-translate/issues?q=is%3Aopen+label%3Aclient+label%3Abug
 [issues_by_client__type_suggestion]: https://github.com/ManushovRodion/app-help-translate/issues?q=is%3Aopen+label%3Aclient+label%3Asuggestion
 [issues_by_client__type_question]: https://github.com/ManushovRodion/app-help-translate/issues?q=is%3Aopen+label%3Aclient+label%3Aquestion
-[issues_by_author]: https://github.com/ManushovRodion/foreign-language-assistant/labels/author
-[issues_by_author__type_bug]: https://github.com/ManushovRodion/app-help-translate/issues?q=is%3Aopen+label%3Aauthor+label%3Abug
-[issues_by_author__type_bugfix]: https://github.com/ManushovRodion/app-help-translate/issues?q=is%3Aopen+label%3Aauthor+label%3Abugfix
-[issues_by_author__type_hotfix]: https://github.com/ManushovRodion/app-help-translate/issues?q=is%3Aopen+label%3Aauthor+label%3Ahotfix
-[issues_by_author__type_todo]: https://github.com/ManushovRodion/app-help-translate/issues?q=is%3Aopen+label%3Aauthor+label%3Atodo
+[issues_by_team]: https://github.com/ManushovRodion/foreign-language-assistant/labels/team
+[issues_by_team__type_bug]: https://github.com/ManushovRodion/app-help-translate/issues?q=is%3Aopen+label%3Ateam+label%3Abug
+[issues_by_team__type_bugfix]: https://github.com/ManushovRodion/app-help-translate/issues?q=is%3Aopen+label%3Ateam+label%3Abugfix
+[issues_by_team__type_hotfix]: https://github.com/ManushovRodion/app-help-translate/issues?q=is%3Aopen+label%3Ateam+label%3Ahotfix
+[issues_by_team__type_todo]: https://github.com/ManushovRodion/app-help-translate/issues?q=is%3Aopen+label%3Ateam+label%3Atodo
 [issues_type_question]: https://github.com/ManushovRodion/foreign-language-assistant/labels/question
 [issues_type_bug]: https://github.com/ManushovRodion/foreign-language-assistant/labels/bug
 [issues_type_suggestion]: https://github.com/ManushovRodion/foreign-language-assistant/labels/suggestion
@@ -19,13 +19,13 @@
 [form_by_client_template_bug]: https://github.com/ManushovRodion/foreign-language-assistant/issues/new?assignees=&labels=client%2Cbug&template=client_bug_report.yml
 [form_by_client_template_suggestion]: https://github.com/ManushovRodion/foreign-language-assistant/issues/new?assignees=&labels=client%2Csuggestion&template=client_suggestion.yml
 [form_by_client_template_question]: https://github.com/ManushovRodion/foreign-language-assistant/issues/new?assignees=&labels=client%2Cquestion&template=client_question.yml
-[form_by_author_template_bug]: https://github.com/ManushovRodion/foreign-language-assistant/issues/new?assignees=&labels=author%2Cbug&template=author_bug_report.yml
-[form_by_author_template_todo]: https://github.com/ManushovRodion/foreign-language-assistant/issues/new?assignees=&labels=author%2Ctodo&template=author_todo.yml
+[form_by_team_template_bug]: https://github.com/ManushovRodion/foreign-language-assistant/issues/new?assignees=&labels=team%2Cbug&template=team_bug_report.yml
+[form_by_team_template_todo]: https://github.com/ManushovRodion/foreign-language-assistant/issues/new?assignees=&labels=team%2Ctodo&template=team_todo.yml
 [project]: https://github.com/users/ManushovRodion/projects/6
 
 # Инструкция по поступлению задач
 
-Есть два источника поступления задач: [наша команда][issues_by_author] и [пользователи][issues_by_client].
+Есть два источника поступления задач: [наша команда][issues_by_team] и [пользователи][issues_by_client].
 
 ## # Отчеты об ошибках от пользователя
 
@@ -74,9 +74,9 @@
 
 ### Обработка
 
-Задачи не создаются на базе вопросов. По мере ответа на вопрос - топик закрывается. Кол-во вопрсов решается за счет вики по проекту.
+Задачи не создаются на базе вопросов. По мере ответа на вопрос - топик закрывается. Кол-во вопросов решается за счет вики по проекту.
 
-## # Предложеня от пользователя
+## # Предложения от пользователя
 
 > Заполняется пользователями приложения, которые хотят предложить идею.
 
@@ -90,7 +90,7 @@
 
 Обсуждается с автором топика его идею и если она реально нужна и реализуема, то:
 
-1. Составляется на ее базе новая [задача для разработки](#-Задачи-для-разработки).
+1. Составляется на ее базе новую [задачу для разработки](#-Задачи-для-разработки).
 2. Ставится метка для текущего топика [**accepted**][issues_type_accepted].
 3. Ставится ссылка на ISSUE_ID созданной задачи.
 4. Закрывается топик.
@@ -103,39 +103,39 @@
 
 ## # Задачи по типу ошибок, для разработки
 
-> Данные топики создаются только авторами приложения.
+> Данные топики создаются только командой приложения.
 > Здесь мы создадим: не критическую ошибку; критическую ошибку, которую нашли сами; и создаем bugfix на случай найденой ошибки в предрелизной версии.
 
 - Просмотреть можно:
-  - [Список всех топиков от авторов][issues_by_author].
-  - [Простые ошибки][issues_by_author__type_bug].
-  - [Hotfix][issues_by_author__type_hotfix].
-  - [Bugfix][issues_by_author__type_bugfix].
+  - [Список всех топиков от команды][issues_by_team].
+  - [Простые ошибки][issues_by_team__type_bug].
+  - [Hotfix][issues_by_team__type_hotfix].
+  - [Bugfix][issues_by_team__type_bugfix].
 
 ### Создание
 
-1. Задачи на ошибку мы создаем через форму [Author Bug Report][form_by_author_template_bug].
-2. Для задач автоматом проставится тег [**author**][issues_by_author] и [**bug**][issues_type_bug].
+1. Задачи на ошибку мы создаем через форму [Team Bug Report][form_by_team_template_bug].
+2. Для задач автоматом проставится тег [**team**][issues_by_team] и [**bug**][issues_type_bug].
 3. В форме надо указать проект [Foreign Language Assistant][project]
 
 Если мы сами нашли критическую ошибку, то:
 
 1. Ставим метку [hotfix][issues_type_hotfix]
 2. После создания:
-   1. Указываем у проекта статус **TODO**.
-   2. Ставим Priority **1**.
+   - Указываем статус **TODO**.
+   - Ставим Priority **1**.
 
 Если во время тестирования предрелиза(**release/[MAJOR.MINOR.PATCH]**) нашлась ошибка, то:
 
 1. Ставим метку [bugfix][issues_type_bugfix]
 2. После создания:
-   1. Указываем у проекта статус **TODO**.
-   2. Ставим Priority **1**.
+   - Указываем статус **TODO**.
+   - Ставим Priority **1**.
 
 Если это обычная ошибка, то:
 
 1. После создания:
-   1. Ставим Priority **2**.
+   - Ставим Priority **2**.
 
 ### Обработка
 
@@ -143,16 +143,16 @@
 
 ## # Задачи для разработки
 
-> Данные топики создаются только авторами приложения.
+> Данные топики создаются только командой приложения.
 
 - Просмотреть можно:
-  - [Список всех топиков от авторов][issues_by_author].
-  - [Задачи][issues_by_author__type_todo].
+  - [Список всех топиков от команды][issues_by_team].
+  - [Задачи][issues_by_team__type_todo].
 
 ### Создание
 
-1. Задачи мы создаем через форму [Author Todo][form_by_author_template_todo].
-2. Для задач автоматом проставится тег [**author**][issues_by_author] и [**todo**][issues_type_todo].
+1. Задачи мы создаем через форму [Team Todo][form_by_team_template_todo].
+2. Для задач автоматом проставится тег [**team**][issues_by_team] и [**todo**][issues_type_todo].
 3. В форме надо указать проект [Foreign Language Assistant][project]
 4. После создания:
    - Ставим Priority **3**.
@@ -164,8 +164,8 @@
 ## # Формирование спринта
 
 1. Сначала формируется список задач из списка задач, которые не выполнились за предыдущий спринт + задачи нового спринта, если есть + задачи без статуса, которые надо выполнить в текущем спринте.
-2. С разработчиками определяем время для задач, которых не указано временя.
-3. Формируем спринт из списка задач, по которым есть время(поле Time). Спринт не должен привышать максимального времени на спринт.
+2. С разработчиками определяем время для задач, у которых не указано время.
+3. После обсуждения с разработчиками формируем текущий спринт из списка задач, по которым есть время(поле Time). Спринт не должен привышать максимального времени на спринт.
 4. Задачи, которые не влезли на текущий спринт - указываем в следующем спринте
 5. Для спринтов указываем версии приложений, в которых они должны появиться(поле Milestone)
 
