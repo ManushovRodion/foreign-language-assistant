@@ -16,11 +16,11 @@
 [issues_type_todo]: https://github.com/ManushovRodion/foreign-language-assistant/labels/todo
 [issues_type_hotfix]: https://github.com/ManushovRodion/foreign-language-assistant/labels/hotfix
 [issues_type_bugfix]: https://github.com/ManushovRodion/foreign-language-assistant/labels/bugfix
-[form_by_client_template_bug]: https://github.com/ManushovRodion/foreign-language-assistant/issues/new?template=client_bug_report.yml
-[form_by_client_template_suggestion]: https://github.com/ManushovRodion/foreign-language-assistant/issues/new?template=client_suggestion.yml
-[form_by_client_template_question]: https://github.com/ManushovRodion/foreign-language-assistant/issues/new?template=client_question.yml
-[form_by_author_template_bug]: https://github.com/ManushovRodion/foreign-language-assistant/issues/new?template=autor_bug_report.yml
-[form_by_author_template_todo]: https://github.com/ManushovRodion/foreign-language-assistant/issues/new?template=autor_todo.yml
+[form_by_client_template_bug]: https://github.com/ManushovRodion/foreign-language-assistant/issues/new?assignees=&labels=client%2Cbug&template=client_bug_report.yml
+[form_by_client_template_suggestion]: https://github.com/ManushovRodion/foreign-language-assistant/issues/new?assignees=&labels=client%2Csuggestion&template=client_suggestion.yml
+[form_by_client_template_question]: https://github.com/ManushovRodion/foreign-language-assistant/issues/new?assignees=&labels=client%2Cquestion&template=client_question.yml
+[form_by_author_template_bug]: https://github.com/ManushovRodion/foreign-language-assistant/issues/new?assignees=&labels=author%2Cbug&template=author_bug_report.yml
+[form_by_author_template_todo]: https://github.com/ManushovRodion/foreign-language-assistant/issues/new?assignees=&labels=author%2Ctodo&template=author_todo.yml
 [project]: https://github.com/users/ManushovRodion/projects/6
 
 # Инструкция по поступлению задач
