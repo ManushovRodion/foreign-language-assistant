@@ -1,5 +1,5 @@
-name: [Author] Bug Report
-description: [Автору] Создание отчета по найденой ошибке
+name: Author Bug Report
+description: Автору: Создание отчета по найденой ошибке
 labels: [ "author", "bug" ]
 body:
   - type: textarea
