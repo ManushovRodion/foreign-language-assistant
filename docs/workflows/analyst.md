@@ -51,14 +51,14 @@
    2. Ставится метка для текущего топика [**accepted**][issues_type_accepted] и [hotfix][issues_type_hotfix]
    3. Выбираем проект [Foreign Language Assistant][project].
    4. После создания:
-      1. Указываем у проекта статус **TODO**.
-      2. Ставим Priority **1**.
+      - Указываем статус **TODO**.
+      - Ставим Priority **1**.
 4. Если это обычная ошибка, то:
    1. Сообщаем что это исправится в ближайшем релизе.
    2. Ставится метка для текущего топика [**accepted**][issues_type_accepted].
    3. Выбираем проект [Foreign Language Assistant][project].
    4. После создания:
-      1. Ставим Priority **2**.
+      - Ставим Priority **2**.
 
 И главное: проверяем, чтобы заголовок ошибок пользователя начинался с "[Bug]: "
 
@@ -70,7 +70,7 @@
 - Для данных вопросов автоматом проставится тег [**client**][issues_by_client] и [**question**][issues_type_question].
 - Просмотреть можно:
   - [Список всех обращений][issues_by_client].
-  - [Вопросы][issues_by_client_type_question].
+  - [Вопросы][issues_by_client__type_question].
 
 ### Обработка
 
@@ -84,7 +84,7 @@
 - Для данных предложений автоматом проставится тег [**client**][issues_by_client] и [**suggestion**][issues_type_question].
 - Просмотреть можно:
   - [Список всех обращений][issues_by_client].
-  - [Вопросы][issues_by_client__type_suggestion].
+  - [Предложения][issues_by_client__type_suggestion].
 
 ### Обработка
 
