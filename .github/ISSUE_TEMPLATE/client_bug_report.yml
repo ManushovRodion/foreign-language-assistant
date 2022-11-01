@@ -1,13 +1,13 @@
-name: Bug Report
-description: Создание отчета по найденой ошибке
-labels: [ "bug" ]
+name: [Client] Bug Report
+description: [Пользователю] Создание отчета по найденой ошибке
+labels: [ "client", "bug" ]
 body:
   - type: textarea
     attributes:
       label: "# Описание ошибки"
       description: Четкое и краткое описание ошибки
     validations:
-      required: true		
+      required: true
   - type: textarea
     attributes:
       label: "# Шаги воспроизведения"
