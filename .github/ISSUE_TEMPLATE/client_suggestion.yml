@@ -1,6 +1,6 @@
-name: Suggestion
-description: Предложения идей
-labels: [ "suggestion" ]
+name: Client Suggestion
+description: [Пользователю] Предложения идей
+labels: [ "client", "suggestion" ]
 body:
   - type: textarea
     attributes:
