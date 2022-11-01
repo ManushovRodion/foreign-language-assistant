@@ -1,5 +1,5 @@
 name: Client Question
-description: [Пользователю] Если появился вопрос по приложению, то вам сюда
+description: "[Пользователю] Если появился вопрос по приложению, то вам сюда"
 labels: [ "client", "question" ]
 body:
   - type: textarea
