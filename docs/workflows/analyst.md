@@ -16,11 +16,11 @@
 [issues_type_todo]: https://github.com/ManushovRodion/foreign-language-assistant/labels/todo
 [issues_type_hotfix]: https://github.com/ManushovRodion/foreign-language-assistant/labels/hotfix
 [issues_type_bugfix]: https://github.com/ManushovRodion/foreign-language-assistant/labels/bugfix
-[form_by_client_template_bug]: https://github.com/ManushovRodion/foreign-language-assistant/issues/new?assignees=&labels=client%2Cquestion&template=client_bug_report.yml
-[form_by_client_template_suggestion]: https://github.com/ManushovRodion/foreign-language-assistant/issues/new?assignees=&labels=client%2Cquestion&template=client_suggestion.yml
-[form_by_client_template_question]: https://github.com/ManushovRodion/foreign-language-assistant/issues/new?assignees=&labels=client%2Cquestion&template=client_question.yml
-[form_by_author_template_bug]: https://github.com/ManushovRodion/foreign-language-assistant/issues/new?assignees=&labels=client%2Cquestion&template=autor_bug_report.yml
-[form_by_author_template_todo]: https://github.com/ManushovRodion/foreign-language-assistant/issues/new?assignees=&labels=client%2Cquestion&template=autor_todo.yml
+[form_by_client_template_bug]: https://github.com/ManushovRodion/foreign-language-assistant/issues/new?template=client_bug_report.yml
+[form_by_client_template_suggestion]: https://github.com/ManushovRodion/foreign-language-assistant/issues/new?template=client_suggestion.yml
+[form_by_client_template_question]: https://github.com/ManushovRodion/foreign-language-assistant/issues/new?template=client_question.yml
+[form_by_author_template_bug]: https://github.com/ManushovRodion/foreign-language-assistant/issues/new?template=autor_bug_report.yml
+[form_by_author_template_todo]: https://github.com/ManushovRodion/foreign-language-assistant/issues/new?template=autor_todo.yml
 [project]: https://github.com/users/ManushovRodion/projects/6
 
 # Инструкция по поступлению задач
@@ -31,7 +31,7 @@
 
 > Заполняется пользователями приложения, которые наткнулись на ошибки.
 
-- Отчеты по ошибкам заполняются через форму [Client Bug][form_by_client_template_bug].
+- Отчеты по ошибкам заполняются через форму [Client Bug Report][form_by_client_template_bug].
 - Для данных ошибок автоматом проставится тег [**client**][issues_by_client] и [**bug**][issues_type_bug].
 - Просмотреть можно:
   - [Список всех обращений][issues_by_client].
