@@ -1,6 +1,6 @@
-name: Author Todo
-description: '[Автору] То что надо реализовать'
-labels: ['author', 'todo']
+name: Team Todo
+description: '[Team] То что надо реализовать'
+labels: ['team', 'todo']
 title: '[Todo]: '
 body:
   - type: input
