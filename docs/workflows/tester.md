@@ -1,4 +1,8 @@
 [project]: https://github.com/users/ManushovRodion/projects/6
+[issues_type_bugfix]: https://github.com/ManushovRodion/foreign-language-assistant/labels/bugfix
+[issues_type_bug]: https://github.com/ManushovRodion/foreign-language-assistant/labels/bug
+[issues_by_team]: https://github.com/ManushovRodion/foreign-language-assistant/labels/team
+[form_by_team_template_bug]: https://github.com/ManushovRodion/foreign-language-assistant/issues/new?assignees=&labels=team%2Cbug&template=team_bug_report.yml
 
 # Инструкция по тестированию задач
 
