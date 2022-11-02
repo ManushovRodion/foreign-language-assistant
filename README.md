@@ -1,52 +1,50 @@
-#  foreign-language-assistant
+[app]: https://manushovrodion.github.io/foreign-language-assistant/
+[wiki]: https://manushovrodion.github.io/foreign-language-assistant/
+[issues_type_question]: https://github.com/ManushovRodion/foreign-language-assistant/issues?q=label%3Aquestion+
+[issues_type_bug]: https://github.com/ManushovRodion/foreign-language-assistant/labels/bug
+[issues_type_suggestion]: https://github.com/ManushovRodion/foreign-language-assistant/issues?q=label%3Asuggestion+
+[form_by_client_template_bug]: https://github.com/ManushovRodion/foreign-language-assistant/issues/new?assignees=&labels=client%2Cbug&template=client_bug_report.yml
+[form_by_client_template_suggestion]: https://github.com/ManushovRodion/foreign-language-assistant/issues/new?assignees=&labels=client%2Csuggestion&template=client_suggestion.yml
+[form_by_client_template_question]: https://github.com/ManushovRodion/foreign-language-assistant/issues/new?assignees=&labels=client%2Cquestion&template=client_question.yml
 
-This template should help get you started developing with Vue 3 in Vite.
+# foreign-language-assistant
 
-## Recommended IDE Setup
+> Это помощник в изучение новых слов/фраз на иностранном языке!
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+Выступает в качестве того, что хранит в себе удобный набор слов/фраз, которые вы добавили, и в качестве того кто диктует вам эти слова/фразы - что позволяет увеличить свой словарный запас.
 
-## Type Support for `.vue` Imports in TS
+- Если нашли ошибку, то: [просмотреть список ошибок][issues_type_bug] или [создать отчет по ошибке][form_by_client_template_bug]
+- Если есть вопросы, то: [просмотреть список вопросов][issues_type_question] или [создать вопрос][form_by_client_template_question]
+- Если есть предложения, то: [просмотреть список предложений][issues_type_suggestion] или [создать предложение][form_by_client_template_suggestion]
+- [Документация][wiki]
 
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin) to make the TypeScript language service aware of `.vue` types.
+## # Функционал
 
-If the standalone TypeScript plugin doesn't feel fast enough to you, Volar has also implemented a [Take Over Mode](https://github.com/johnsoncodehk/volar/discussions/471#discussioncomment-1361669) that is more performant. You can enable it by the following steps:
+- Добавление слов/фраз на иностранном языке, с возможностью сгруппировать их по определенным свойствам;
+- Фильтрация и сортировка данных;
+- Диктор(пока в письменном варианте), по всем словам/фразам в вашей базе или по определенным свойствам;
+- После диктовки отображает поряд продиктованных слов/фраз и их перевод, который даст вам сравнить правильность написания;
+- Есть бекап данных, посредством выгрузки и загрузки;
+- Одинаково удобно открывается на декстопе, на планшетах и телефоне(если нет - поправим);
 
-1. Disable the built-in TypeScript Extension
-    1) Run `Extensions: Show Built-in Extensions` from VSCode's command palette
-    2) Find `TypeScript and JavaScript Language Features`, right click and select `Disable (Workspace)`
-2. Reload the VSCode window by running `Developer: Reload Window` from the command palette.
+Данный список будет расширяться по возможности.
 
-## Customize configuration
+## # Использование
 
-See [Vite Configuration Reference](https://vitejs.dev/config/).
+1. Переходим по [ссылке][app] приложение.
+2. Смотрим в [документацию][wiki], если что-то непонятно.
+3. Добавляем свои слова/фразы или загружаем через бекап.
+4. Пользуемся.
 
-## Project Setup
+## # Примечание
 
-```sh
-npm install
-```
+Данные не храняться на внешнем устростве, так что за сохранность данных ответственность висит за пользователем.
 
-### Compile and Hot-Reload for Development
+Если откроете в другом браузере, на другом устройстве или в анонимном режиме браузера - то придется заново заполнять данные(на то и сделан бекап).
 
-```sh
-npm run dev
-```
+## # Планы на будущие
 
-### Type-Check, Compile and Minify for Production
-
-```sh
-npm run build
-```
-
-### Run Unit Tests with [Vitest](https://vitest.dev/)
-
-```sh
-npm run test:unit
-```
-
-### Lint with [ESLint](https://eslint.org/)
-
-```sh
-npm run lint
-```
+- Мобильное приложение
+- Облако для синхронизации устройств
+- Голосовой диктор
+- Генератор фраз на базе правил языка
