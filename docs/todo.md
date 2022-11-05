@@ -3,22 +3,22 @@
 `(Принято ...issue) || (Отказано: ПРИЧИНА)`
 
 - [ ] Список элементов в виде карточек, с группами внутри
-  - [ ] Карточки (Принято #4)
-  - [ ] Группы (Принято #5)
-  - [ ] Форма добавления групп (Принято #6)
-  - [ ] Метки для групп (Принято #5, #6)
-  - [ ] Заголовки для групп (Принято #4)
+  - [ ] Карточки (Принято [#4](https://github.com/ManushovRodion/foreign-language-assistant/issues/4)
+  - [ ] Группы (Принято [#5](https://github.com/ManushovRodion/foreign-language-assistant/issues/5))
+  - [ ] Форма добавления групп (Принято [#6](https://github.com/ManushovRodion/foreign-language-assistant/issues/6))
+  - [ ] Метки для групп (Принято [#5](https://github.com/ManushovRodion/foreign-language-assistant/issues/5), [#6](https://github.com/ManushovRodion/foreign-language-assistant/issues/6))
+  - [ ] Заголовки для групп (Принято [#4](https://github.com/ManushovRodion/foreign-language-assistant/issues/4))
   - [ ] Поиск по заголовкам группы
   - [ ] Поиск по заголовкам карточек
   - [ ] Поиск по меткам
   - [ ] Фильтрация по меткам
   - [ ] Транскрипция для иностранных слов
-  - [ ] Пагинация (Принято #8)
+  - [ ] Пагинация (Принято [#8](https://github.com/ManushovRodion/foreign-language-assistant/issues/8))
 - [ ] Диктор
-  - [ ] Текстовый (Принято #7)
+  - [ ] Текстовый (Принято [#7](https://github.com/ManushovRodion/foreign-language-assistant/issues/7))
   - [ ] Голосовой
-  - [ ] Диалог запуска диктора (Принято #7)
-  - [ ] Диалог результата диктора (Принято #7)
+  - [ ] Диалог запуска диктора (Принято [#7](https://github.com/ManushovRodion/foreign-language-assistant/issues/7))
+  - [ ] Диалог результата диктора (Принято [#7](https://github.com/ManushovRodion/foreign-language-assistant/issues/7))
   - [ ] Таймер автозапуска рендерега слова/фраз для текстового диктора
   - [ ] Таймер автозапуска рендерега слова/фраз для голосового диктора
 - [ ] Бекап
