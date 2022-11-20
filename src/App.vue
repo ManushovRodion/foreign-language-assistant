@@ -120,7 +120,7 @@ $widthSidebar: 300px;
 }
 
 .contex {
-  padding: 70px 50px;
+  padding: 100px 50px;
 }
 
 .top-bar {
@@ -130,6 +130,7 @@ $widthSidebar: 300px;
   position: fixed;
   z-index: 900;
   width: 100%;
+  user-select: none;
 
   &-title {
     text-transform: uppercase;
