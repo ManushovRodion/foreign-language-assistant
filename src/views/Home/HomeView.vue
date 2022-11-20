@@ -60,15 +60,47 @@ cardList.push({
   dateCreated: new Date("2022-11-19"),
   dateUpdate: new Date("2022-11-19"),
   title: "",
-  groups: [],
-});
-
-cardList.push({
-  id: 1,
-  dateCreated: new Date("2022-11-18"),
-  dateUpdate: new Date("2022-11-89"),
-  title: "",
-  groups: [],
+  groups: [
+    {
+      id: 1,
+      title: "",
+      items: [
+        {
+          original: "I am not a bad student",
+          translate: "Я не плохой студент",
+        },
+        {
+          original: "(He is / He`s) a new student",
+          translate: "Он новый студент",
+        },
+      ],
+      meta: [
+        {
+          id: 1,
+          name: "to be",
+        },
+        {
+          id: 2,
+          name: "level up",
+        },
+      ],
+    },
+    {
+      id: 2,
+      title: "Tecn",
+      items: [
+        {
+          original: "He",
+          translate: "Он",
+        },
+        {
+          original: "She",
+          translate: "Она",
+        },
+      ],
+      meta: [],
+    },
+  ],
 });
 </script>
 

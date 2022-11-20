@@ -5,8 +5,8 @@ import { RouterView, useRoute } from "vue-router";
 import { useSwiper, OnSwip } from "./uses/useSwiper";
 import { useToggle } from "./uses/useToggle";
 
-import AppLogo from "./components/AppLogo.vue";
-import AppVersion from "./components/AppVersion.vue";
+import AppLogo from "./components/app/AppLogo.vue";
+import AppVersion from "./components/app/AppVersion.vue";
 
 const { swip } = useSwiper(document);
 const sidebarToggle = useToggle(true);
@@ -42,7 +42,7 @@ const toggle = () => {
         <AppVersion />
       </div>
 
-      <div class="sidebar-contex"></div>
+      <div class="sidebar-context"></div>
     </div>
     <div class="layout-mask" @click="toggle" />
     <div class="wrapper">
@@ -53,7 +53,7 @@ const toggle = () => {
         </div>
       </div>
 
-      <main class="contex">
+      <main class="context">
         <RouterView />
       </main>
     </div>
@@ -93,7 +93,7 @@ $widthSidebar: 300px;
     margin: -8px auto 6px;
   }
 
-  &-contex {
+  &-context {
     flex-grow: 2;
   }
 }
@@ -119,7 +119,7 @@ $widthSidebar: 300px;
   min-height: 200vh;
 }
 
-.contex {
+.context {
   padding: 100px 50px;
 }
 
@@ -161,7 +161,7 @@ $widthSidebar: 300px;
     padding: 15px 15px;
   }
 
-  .contex {
+  .context {
     padding: 70px 15px;
   }
 }
