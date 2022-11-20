@@ -7,14 +7,12 @@ import { useToggle } from "./uses/useToggle";
 
 import AppLogo from "./components/app/AppLogo.vue";
 import AppVersion from "./components/app/AppVersion.vue";
+import IconChevronLeft from "./components/icon/IconChevronLeft.vue";
+import IconChevronRight from "./components/icon/IconChevronRight.vue";
 
 const { swip } = useSwiper(document);
 const sidebarToggle = useToggle(true);
 const route = useRoute();
-
-if (window.innerWidth <= 991) {
-  sidebarToggle.onNotActive();
-}
 
 const classNames = computed(() => {
   return sidebarToggle.active.value ? "active-sidebar" : "";
@@ -27,10 +25,29 @@ watch(swip, (swip) => {
   else if (swip === OnSwip.ON_SWIP_LEFT) sidebarToggle.onNotActive();
 });
 
+watch(sidebarToggle.active, (active) => {
+  if (window.innerWidth > 991) return;
+
+  const node = document.querySelector("body");
+  if (!node) return;
+
+  node.style.overflow = active ? "hidden" : "";
+});
+
 const toggle = () => {
   swip.value = OnSwip.NONE;
   sidebarToggle.onToggle();
 };
+
+const toggleActive = () => {
+  if (window.innerWidth > 991) return;
+
+  sidebarToggle.onToggle();
+};
+
+if (window.innerWidth <= 991) {
+  sidebarToggle.onNotActive();
+}
 </script>
 
 <template>
@@ -40,6 +57,18 @@ const toggle = () => {
         <AppLogo />
         <div class="sidebar-hr-logo" />
         <AppVersion />
+      </div>
+
+      <div
+        class="sidebar-active"
+        :class="{ 'sidebar-active_on': sidebarToggle.active.value }"
+        @click="toggleActive"
+      >
+        <IconChevronLeft
+          v-if="sidebarToggle.active.value"
+          class="sidebar-active__icon"
+        />
+        <IconChevronRight v-else class="sidebar-active__icon" />
       </div>
 
       <div class="sidebar-context"></div>
@@ -96,6 +125,41 @@ $widthSidebar: 300px;
   &-context {
     flex-grow: 2;
   }
+  &-active {
+    cursor: pointer;
+    position: absolute;
+    right: -15px;
+    top: 32px;
+    z-index: 1001;
+
+    &::before {
+      content: "";
+      position: absolute;
+      width: 40px;
+      height: 40px;
+      top: -5px;
+      left: -10px;
+      background-color: #343a40;
+      z-index: -1;
+      transform: rotate(45deg);
+      border-radius: 3px;
+    }
+
+    &_on {
+      right: -10px;
+
+      &::before {
+        left: 0;
+        background-color: var(--primary-color);
+      }
+    }
+
+    &__icon {
+      width: 30px;
+      height: 30px;
+      fill: #ffffff;
+    }
+  }
 }
 
 .active-sidebar {
@@ -116,7 +180,7 @@ $widthSidebar: 300px;
 .wrapper {
   transition: 1s;
   position: relative;
-  min-height: 200vh;
+  min-height: 100vh;
 }
 
 .context {
@@ -146,6 +210,14 @@ $widthSidebar: 300px;
 }
 
 @media (min-width: 992px) {
+  .sidebar-active {
+    cursor: default;
+
+    &__icon {
+      opacity: 0;
+    }
+  }
+
   .layout-mask {
     display: none;
   }

@@ -30,7 +30,7 @@ const updateTitle = (value: string) => {
 </script>
 
 <template>
-  <UiCard>
+  <UiCard class="card-groups">
     <template #title>
       <div class="card-groups-header">
         <div>
@@ -56,9 +56,12 @@ const updateTitle = (value: string) => {
     <template #default>
       <div style="min-height: 200px">
         <CardGroup
-          v-for="group in props.card.groups"
+          v-for="(group, index) in props.card.groups"
           :key="group.id"
           :group="group"
+          :style="{
+            marginBottom: index === props.card.groups.length - 1 ? 0 : '20px',
+          }"
         />
       </div>
     </template>
