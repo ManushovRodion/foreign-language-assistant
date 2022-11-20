@@ -47,6 +47,7 @@ const update = (event: Event) => {
 <style lang="scss">
 .ui-input {
   display: inline-flex;
+  width: 100%;
   flex-direction: column;
   margin-bottom: 20px;
 
@@ -64,7 +65,8 @@ const update = (event: Event) => {
     border: 1px solid #ced4da;
     border-radius: 3px;
     color: #495057;
-    min-width: 100px;
+    display: inline-block;
+    width: 100%;
     padding: 10px;
   }
 }

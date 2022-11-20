@@ -2,9 +2,9 @@
 import type { PropType } from "vue";
 import { format } from "date-fns";
 
-import UiCard from "@/components/UiCard.vue";
-import UiBtn from "@/components/UiBtn.vue";
-import UiInputText from "@/components/UiInputText.vue";
+import UiCard from "@/components/ui/UiCard.vue";
+import UiBtn from "@/components/ui/UiBtn.vue";
+import UiInputText from "@/components/ui/UiInputText.vue";
 
 import type { Card } from "./types";
 
@@ -23,31 +23,34 @@ const emit = defineEmits<{
 const updateTitle = (value: string) => {
   emit("update", {
     ...props.card,
-    groups: [{ id: 1 }],
     title: value,
   });
 };
 </script>
 
 <template>
-  <UiCard>
+  <UiCard class="card-empty">
     <template #title>
-      <span class="pr_5">#</span>
-      <span>{{ format(props.card.dateCreated, "yyyy.MM.dd") }}</span>
-      <span class="pr_5 pl_5">/</span>
-      <UiInputText
-        @input="updateTitle"
-        :value="props.card.title"
-        placeholder="Название карточки"
-      />
+      <div class="card-empty-header">
+        <span class="pr_5">#</span>
+        <span>{{ format(props.card.dateCreated, "yyyy.MM.dd") }}</span>
+        <span class="pr_5 pl_5">/</span>
+        <UiInputText
+          @input="updateTitle"
+          :value="props.card.title"
+          placeholder="Название карточки"
+        />
+      </div>
     </template>
 
     <template #action>
-      <UiBtn>Добавить</UiBtn>
+      <div class="card-empty-actions">
+        <UiBtn>Добавить</UiBtn>
+      </div>
     </template>
 
     <template #default>
-      <div class="container">
+      <div class="card-empty-container">
         <p>
           Нет элементов. Необходимо <strong>добавить</strong>, для отображения
         </p>
@@ -57,11 +60,40 @@ const updateTitle = (value: string) => {
 </template>
 
 <style lang="scss" scoped>
-.container {
+.card-empty-header {
+  display: flex;
+  .ui-input {
+    margin-bottom: 0;
+  }
+}
+
+.card-empty-actions {
+  display: flex;
+  margin-right: 15px;
+
+  .ui-btn {
+    width: 100%;
+    margin-bottom: 0;
+  }
+}
+.card-empty-container {
   min-height: 200px;
   display: flex;
   justify-content: center;
   align-items: center;
   text-align: center;
+}
+
+@media (max-width: 768px) {
+  .card-empty-header {
+    justify-content: flex-end;
+    flex-wrap: wrap;
+    margin-left: 15px;
+    margin-right: 5px;
+  }
+  .card-empty-actions {
+    margin-left: 15px;
+    margin-right: 15px;
+  }
 }
 </style>
