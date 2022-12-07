@@ -6,6 +6,74 @@ import CardGroups from "./CardGroups.vue";
 import CardEmpty from "./CardEmpty.vue";
 
 import type { Card } from "./types";
+import { dataBase } from "@/dataBase";
+
+try {
+  const cardId = await dataBase.table.WordsCard.create({ title: "card" });
+  await dataBase.table.WordsCard.update({ title: "test card" }, cardId);
+
+  const cards = await dataBase.table.WordsCard.findAll();
+  console.log("cards", cards);
+
+  const groupId = await dataBase.table.WordsGroup.createByCardId(
+    { title: "test group" },
+    cardId
+  );
+
+  await dataBase.table.WordsGroup.update({ title: "update title 2" }, 1);
+
+  const groups = await dataBase.table.WordsGroup.findAllbyCardId(cardId);
+  console.log("groups", groups);
+
+  await dataBase.table.WordsItem.createByGroupId(
+    {
+      translate: "test tr 1",
+      original: "test or 1",
+    },
+    groupId
+  );
+
+  const items = await dataBase.table.WordsItem.findAllbyGroupId(groupId);
+  console.log("items", items);
+
+  await dataBase.table.WordsLabel.createByGroupId({ name: "test 2" }, groupId);
+
+  const labels = await dataBase.table.WordsLabel.findAllByGroupId(groupId);
+  console.log("labels", labels);
+} catch (e) {
+  console.log(e);
+}
+
+// await dataBase.table.WordsItem.createByGroupId(
+//   {
+//     translate: "test tr 2",
+//     original: "test or 2",
+//   },
+//   1
+// );
+
+// import { tableWordsGroup } from "@/dataBase";
+
+// await tableWordsGroup.update(
+//   {
+//     title: "test",
+//     cardId: 1,
+//     items: [
+//       {
+//         translate: "I am",
+//         original: "Я",
+//       },
+//     ],
+//     meta: [
+//       {
+//         name: "to be",
+//       },
+//     ],
+//   },
+//   1
+// );
+
+//await tableWordsMeta.createByGroup({ name: "index" }, 2);
 
 let cardList = reactive<Card[]>([]);
 const cardEmpty = ref<Card>({
