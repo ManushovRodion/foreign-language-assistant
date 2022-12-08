@@ -27,13 +27,13 @@ export const createApi = (connect: Connect) => {
    * @param value
    * @param cardId
    */
-  const update = async (value: CreateWordsCard, cardId: WordsCardId) => {
+  const update = async (value: UpdateWordsCard, cardId: WordsCardId) => {
     const link = await connect;
 
     const card = await link.get(TABLE, cardId);
     if (!card) throw new Error(`Не найдена карточка с ID ${cardId}`);
 
-    validRequered<CreateWordsCard>(value, "title");
+    validRequered<UpdateWordsCard>(value, "title");
 
     const tx = link.transaction(TABLE, "readwrite");
     let cursor = await tx.store.openCursor();
