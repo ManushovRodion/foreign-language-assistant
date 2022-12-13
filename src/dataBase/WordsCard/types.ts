@@ -5,6 +5,7 @@ export type WordsCardId = number;
 
 export interface CreateWordsCard {
   title: string;
+  dateCreated?: Date;
 }
 
 export interface UpdateWordsCard {
@@ -24,11 +25,11 @@ export interface TableWordsCard {
   dateUpdate: Date;
 }
 
-export interface TablesApiWordsCard {
+export interface TablesApi {
   [TABLE]: ReturnType<typeof createApi>;
 }
 
-export interface DBSchemaWordsCard {
+export interface DBSchema {
   [TABLE]: {
     value: TableWordsCard;
     key: WordsCardId;

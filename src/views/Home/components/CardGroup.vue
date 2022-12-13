@@ -6,7 +6,8 @@ import UiCheckbox from "@/components/ui/UiCheckbox.vue";
 import UiBadge from "@/components/ui/UiBadge.vue";
 import UiTooltip from "@/components/ui/UiTooltip.vue";
 
-import type { Group } from "./types";
+import type { Group } from "./../types";
+import { useFormGroup } from "../uses/useFormGroup";
 
 const props = defineProps({
   group: {
@@ -16,8 +17,8 @@ const props = defineProps({
   },
 });
 
-// example
 const check = ref(false);
+const formGroup = useFormGroup();
 </script>
 
 <template>
@@ -44,19 +45,19 @@ const check = ref(false);
         </span>
       </section>
 
-      <footer v-if="props.group.meta.length" class="card-group-footer">
+      <footer v-if="props.group.labels.length" class="card-group-footer">
         <UiBadge
-          v-for="meta in props.group.meta"
-          :key="meta.id"
+          v-for="labels in props.group.labels"
+          :key="labels.id"
           design="info"
           class="mr_5"
         >
-          {{ meta.name }}
+          {{ labels.name }}
         </UiBadge>
       </footer>
     </div>
     <div class="card-group-actions">
-      <UiBtn>Изменить</UiBtn>
+      <UiBtn @click="formGroup.open(props.group)">Изменить</UiBtn>
       <UiBtn>Диктор</UiBtn>
     </div>
   </div>

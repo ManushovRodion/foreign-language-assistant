@@ -22,11 +22,11 @@ export interface TableWordsGroup {
   cardId: WordsCardId;
 }
 
-export interface TablesApiWordsGroup {
+export interface TablesApi {
   [TABLE]: ReturnType<typeof createApi>;
 }
 
-export interface DBSchemaWordsGroup {
+export interface DBSchema {
   [TABLE]: {
     value: TableWordsGroup;
     key: WordsCardId;

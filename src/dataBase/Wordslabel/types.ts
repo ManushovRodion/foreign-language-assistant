@@ -25,11 +25,11 @@ export interface TableWordsLabelsGroups {
   groupId: WordsGroupId;
 }
 
-export interface TablesApiWordsLabel {
+export interface TablesApi {
   [TABLE]: ReturnType<typeof createApi>;
 }
 
-export interface DBSchemaWordsLabel {
+export interface DBSchema {
   [TABLE]: {
     value: TableWordsLabel;
     key: WordsLabelId;

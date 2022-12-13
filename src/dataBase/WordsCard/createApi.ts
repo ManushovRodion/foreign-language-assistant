@@ -12,12 +12,14 @@ import { validRequered } from "../validations";
 
 export const createApi = (connect: Connect) => {
   const create = async (value: CreateWordsCard) => {
-    validRequered<CreateWordsCard>(value, "title");
+    if (value.title) {
+      validRequered<CreateWordsCard>(value, "title");
+    }
 
-    const date = new Date();
+    const date = value?.dateCreated || new Date();
 
     return (await connect).add(TABLE, {
-      ...value,
+      title: value.title,
       dateCreated: date,
       dateUpdate: date,
     });
@@ -41,7 +43,7 @@ export const createApi = (connect: Connect) => {
     while (cursor) {
       if (cursor.key === cardId) {
         cursor.update({
-          ...value,
+          title: value.title,
           dateCreated: cursor.value.dateCreated,
           dateUpdate: new Date(),
         });
@@ -67,25 +69,31 @@ export const createApi = (connect: Connect) => {
    */
   const findAll = async () => {
     const link = await connect;
-    const keys = await link.getAllKeys(TABLE);
-
-    const promise = keys.map(async (key) => {
-      const card = await link.get(TABLE, key);
-      if (!card) return;
-
-      return {
-        ...card,
-        id: key,
-      } as WordsCard;
-    });
-    const items = await Promise.all(promise);
-
     const cards: WordsCard[] = [];
-    items.forEach((card) => {
-      if (card) cards.push(card);
-    });
+
+    const tx = link.transaction(TABLE);
+    let cursor = await tx.store.openCursor();
+
+    while (cursor) {
+      cards.push({
+        ...cursor.value,
+        id: cursor.key,
+      });
+
+      cursor = await cursor.continue();
+    }
+
+    tx.done;
 
     return cards;
+  };
+
+  const find = async (cardId: WordsCardId) => {
+    const card = await (await connect).get(TABLE, cardId);
+    return {
+      ...card,
+      id: cardId,
+    };
   };
 
   return {
@@ -93,5 +101,6 @@ export const createApi = (connect: Connect) => {
     update,
     remove,
     findAll,
+    find,
   };
 };

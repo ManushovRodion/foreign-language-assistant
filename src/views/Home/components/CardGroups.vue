@@ -5,9 +5,11 @@ import { format } from "date-fns";
 import UiCard from "@/components/ui/UiCard.vue";
 import UiBtn from "@/components/ui/UiBtn.vue";
 import UiInputText from "@/components/ui/UiInputText.vue";
+
 import CardGroup from "./CardGroup.vue";
 
-import type { Card } from "./types";
+import type { Card } from "./../types";
+import { useFormGroup } from "../uses/useFormGroup";
 
 const props = defineProps({
   card: {
@@ -27,6 +29,8 @@ const updateTitle = (value: string) => {
     title: value,
   });
 };
+
+const formGroup = useFormGroup();
 </script>
 
 <template>
@@ -39,8 +43,8 @@ const updateTitle = (value: string) => {
           <span class="pr_5 pl_5">/</span>
         </div>
         <UiInputText
-          @input="updateTitle"
-          :value="props.card.title"
+          @update:model-value="updateTitle"
+          :model-value="props.card.title"
           placeholder="Название карточки"
         />
       </div>
@@ -48,7 +52,7 @@ const updateTitle = (value: string) => {
 
     <template #action>
       <div class="card-groups-actions">
-        <UiBtn class="mr_5">Добавить</UiBtn>
+        <UiBtn class="mr_5" @click="formGroup.open()">Добавить</UiBtn>
         <UiBtn>Диктор</UiBtn>
       </div>
     </template>

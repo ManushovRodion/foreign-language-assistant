@@ -4,7 +4,7 @@ import { getCurrentInstance } from "vue";
 const idComponent = `input-${getCurrentInstance()?.uid}`;
 
 const props = defineProps({
-  value: {
+  modelValue: {
     type: String,
     default: "",
   },
@@ -19,12 +19,12 @@ const props = defineProps({
 });
 
 const emit = defineEmits<{
-  (e: "input", value: string): void;
+  (e: "update:modelValue", value: string): void;
 }>();
 
 const update = (event: Event) => {
   const value = (event.target as HTMLInputElement).value;
-  emit("input", value.trim());
+  emit("update:modelValue", value.trim());
 };
 </script>
 
@@ -38,7 +38,7 @@ const update = (event: Event) => {
       class="ui-input__input"
       type="text"
       @input="update"
-      :value="props.value"
+      :value="props.modelValue"
       :placeholder="props.placeholder"
     />
   </div>

@@ -6,18 +6,21 @@ import UiCard from "@/components/ui/UiCard.vue";
 import UiBtn from "@/components/ui/UiBtn.vue";
 import UiInputText from "@/components/ui/UiInputText.vue";
 
-import type { Card } from "./types";
+import type { CardEmpty } from "./../types";
+import { useFormGroup } from "../uses/useFormGroup";
+
+const formGroup = useFormGroup();
 
 const props = defineProps({
   card: {
-    type: Object as PropType<Card>,
+    type: Object as PropType<CardEmpty>,
     requred: true,
     default: () => {},
   },
 });
 
 const emit = defineEmits<{
-  (e: "update", card: Card): void;
+  (e: "update", card: CardEmpty): void;
 }>();
 
 const updateTitle = (value: string) => {
@@ -36,8 +39,8 @@ const updateTitle = (value: string) => {
         <span>{{ format(props.card.dateCreated, "yyyy.MM.dd") }}</span>
         <span class="pr_5 pl_5">/</span>
         <UiInputText
-          @input="updateTitle"
-          :value="props.card.title"
+          @update:model-value="updateTitle"
+          :model-value="props.card.title"
           placeholder="Название карточки"
         />
       </div>
@@ -45,7 +48,7 @@ const updateTitle = (value: string) => {
 
     <template #action>
       <div class="card-empty-actions">
-        <UiBtn>Добавить</UiBtn>
+        <UiBtn @click="formGroup.open()">Добавить</UiBtn>
       </div>
     </template>
 

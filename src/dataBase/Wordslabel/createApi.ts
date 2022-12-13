@@ -93,7 +93,9 @@ export const createApi = (connect: Connect) => {
 
     const promise = index.map(async (index) => {
       const context = await link.get(TABLE, index.labelId);
-      if (!context) return;
+      if (!context) {
+        throw new Error("Не найдена метка для связи!");
+      }
 
       return {
         ...context,
@@ -101,16 +103,7 @@ export const createApi = (connect: Connect) => {
       } as WordsLabel;
     });
 
-    /**
-     * items.filter((v) => v?.id) - ts некорректно возвращает тип
-     */
-    const items = await Promise.all(promise);
-    const labels: WordsLabel[] = [];
-    items.forEach((v) => {
-      if (v) labels.push(v);
-    });
-
-    return labels;
+    return Promise.all(promise);
   };
 
   return {

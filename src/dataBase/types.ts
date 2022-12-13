@@ -2,20 +2,20 @@ import type { DBSchema, IDBPDatabase } from "idb";
 
 // ======================================================================
 
-import type { TablesApiWordsLabel, DBSchemaWordsLabel } from "./Wordslabel";
-import type { TablesApiWordsItem, DBSchemaWordsItem } from "./WordsItem";
-import type { TablesApiWordsGroup, DBSchemaWordsGroup } from "./WordsGroup";
-import type { TablesApiWordsCard, DBSchemaWordsCard } from "./WordsCard";
+import type * as Wordslabel from "./Wordslabel";
+import type * as WordsItem from "./WordsItem";
+import type * as WordsGroup from "./WordsGroup";
+import type * as WordsCard from "./WordsCard";
 
 /**
  * Подключаем интерфейс API
  */
 
 export interface Tables
-  extends TablesApiWordsLabel,
-    TablesApiWordsItem,
-    TablesApiWordsGroup,
-    TablesApiWordsCard {}
+  extends Wordslabel.TablesApi,
+    WordsItem.TablesApi,
+    WordsGroup.TablesApi,
+    WordsCard.TablesApi {}
 
 /**
  * Подключаем схему IDB
@@ -23,10 +23,10 @@ export interface Tables
 
 export interface SchemaDataBase
   extends DBSchema,
-    DBSchemaWordsLabel,
-    DBSchemaWordsItem,
-    DBSchemaWordsGroup,
-    DBSchemaWordsCard {}
+    Wordslabel.DBSchema,
+    WordsItem.DBSchema,
+    WordsGroup.DBSchema,
+    WordsCard.DBSchema {}
 
 // ======================================================================
 

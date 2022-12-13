@@ -14,6 +14,7 @@ export interface UpdateWordsItem {}
 export interface WordsItem {
   original: string;
   translate: string;
+  groupId: WordsGroupId;
 }
 
 export interface TableWordsItem {
@@ -22,11 +23,11 @@ export interface TableWordsItem {
   groupId: WordsGroupId;
 }
 
-export interface TablesApiWordsItem {
+export interface TablesApi {
   [TABLE]: ReturnType<typeof createApi>;
 }
 
-export interface DBSchemaWordsItem {
+export interface DBSchema {
   [TABLE]: {
     value: TableWordsItem;
     key: WordsGroupId;

@@ -1,26 +1,52 @@
-export type Meta = {
-  id: number;
-  name: string;
-};
+export type LabelId = number;
 
-export type Item = {
+export interface Label {
+  id: LabelId;
+  name: string;
+}
+
+export type GroupId = number;
+
+export interface Item {
   original: string;
   translate: string;
-};
+}
 
-export type Group = {
-  id: number;
+export interface Group {
+  id: GroupId;
+  cardId: CardId;
   title: string;
 
   items: Item[];
-  meta: Meta[];
-};
+  labels: Label[];
+}
 
-export type Card = {
-  id: number;
+export interface CardEmpty {
+  title: string;
   dateCreated: Date;
-  dateUpdate: Date;
+
+  groups: Group[];
+}
+
+export type CardId = number;
+
+export interface Card {
+  id: CardId;
+  dateCreated: Date;
   title: string;
 
   groups: Group[];
-};
+}
+
+export interface CreateCard {
+  title?: string;
+  dateCreated?: Date;
+
+  groups: Group[];
+}
+
+export interface UpdateCard {
+  title?: string;
+
+  groups: Group[];
+}

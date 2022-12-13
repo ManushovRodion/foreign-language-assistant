@@ -49,13 +49,10 @@ export const createApi = (connect: Connect) => {
    * @param groupId
    * @returns WordsItem[]
    */
-  const findAllbyGroupId = async (groupId: WordsGroupId) => {
-    const items = (await connect).getAllFromIndex(TABLE, "groupId", groupId);
-
-    return (await items).map((item: any) => {
-      delete item.groupId;
-      return item as WordsItem;
-    });
+  const findAllbyGroupId = async (
+    groupId: WordsGroupId
+  ): Promise<WordsItem[]> => {
+    return (await connect).getAllFromIndex(TABLE, "groupId", groupId);
   };
 
   return {

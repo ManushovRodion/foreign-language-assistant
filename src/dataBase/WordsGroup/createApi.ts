@@ -26,8 +26,11 @@ export const createApi = (connect: Connect) => {
     const card = await link.get(TABLE_CARD, cardId);
     if (!card) throw new Error(`Не найдена карточка с ID ${cardId}`);
 
-    validRequered<CreateWordsGroup>(value, "title");
-    return link.add(TABLE, { ...value, cardId });
+    if (value.title) {
+      validRequered<CreateWordsGroup>(value, "title");
+    }
+
+    return link.add(TABLE, { title: value.title, cardId });
   };
 
   /**
@@ -46,7 +49,7 @@ export const createApi = (connect: Connect) => {
     while (cursor) {
       if (cursor.key === groupId) {
         cursor.update({
-          ...value,
+          title: value.title,
           cardId: cursor.value.cardId,
         });
 
@@ -82,27 +85,22 @@ export const createApi = (connect: Connect) => {
    * @returns WordsGroup[]
    */
   const findAllbyCardId = async (cardId: WordsCardId) => {
-    const tx = (await connect).transaction(TABLE);
-    let cursor = await tx.store.openCursor();
-    const items: WordsGroup[] = [];
+    const link = await connect;
+    const index = await link.getAllKeysFromIndex(TABLE, "cardId", cardId);
 
-    while (cursor) {
-      if (cursor.value.cardId === cardId) {
-        const value = cursor.value as any;
-        delete value.cardId;
+    const promise = index.map(async (groupId) => {
+      const group = await link.get(TABLE, groupId);
+      if (!group) throw new Error("Не найдена группа!");
 
-        items.push({
-          ...value,
-          id: cursor.key,
-        });
-      }
+      const data: WordsGroup = {
+        id: groupId,
+        title: group.title,
+      };
 
-      cursor = await cursor.continue();
-    }
+      return data;
+    });
 
-    tx.done;
-
-    return items;
+    return Promise.all(promise);
   };
 
   return {
