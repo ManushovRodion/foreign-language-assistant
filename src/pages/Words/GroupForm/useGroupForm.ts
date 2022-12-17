@@ -141,16 +141,21 @@ export const useGroupForm = () => {
    * Обновляет элемент группы
    */
   const updateItem = (value: GroupItem, key: IndexKey) => {
-    if (!value.original || !value.translate) return;
-
     const index = dataItems.value.findIndex((item) => item.key === key);
     if (index < 0) return;
 
     dataItems.value[index].original = value.original;
     dataItems.value[index].translate = value.translate;
 
-    groupDataItemIndexKey++;
-    dataItems.value.push(defineItem(groupDataItemIndexKey));
+    if (value.original && value.translate) {
+      const index = dataItems.value.findIndex(
+        (v) => !v.original || !v.translate
+      );
+      if (index > -1) return;
+
+      groupDataItemIndexKey++;
+      dataItems.value.push(defineItem(groupDataItemIndexKey));
+    }
   };
 
   return {
