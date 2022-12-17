@@ -39,6 +39,7 @@ const create = async () => {
           <span class="pr_5 pl_5">/</span>
         </div>
         <UiInputText
+          :class="$style['ui-input']"
           @update:model-value="card.updateTitle"
           :model-value="card.data.title"
           placeholder="Название карточки"
@@ -48,7 +49,7 @@ const create = async () => {
 
     <template #action>
       <div :class="$style.action">
-        <UiBtn class="mr_5" @click="create()"> Добавить </UiBtn>
+        <UiBtn :class="$style['ui-btn']" @click="create()"> Добавить </UiBtn>
       </div>
     </template>
 

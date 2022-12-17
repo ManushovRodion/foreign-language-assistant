@@ -34,6 +34,7 @@ card.setup(props.value);
           <span class="pr_5 pl_5">/</span>
         </div>
         <UiInputText
+          :class="$style['ui-input']"
           @update:model-value="card.updateTitle"
           :model-value="card.data.title"
           placeholder="Название карточки"
@@ -43,10 +44,14 @@ card.setup(props.value);
 
     <template #action>
       <div :class="$style.action">
-        <UiBtn class="mr_5" @click="eventFus.onCreated(card.data)">
+        <UiBtn
+          class="mr_5"
+          :class="$style['ui-btn']"
+          @click="eventFus.onCreated(card.data)"
+        >
           Добавить
         </UiBtn>
-        <UiBtn>Диктор</UiBtn>
+        <UiBtn :class="$style['ui-btn']">Диктор</UiBtn>
       </div>
     </template>
 
