@@ -63,6 +63,13 @@ export const createApi = (connect: Connect) => {
   };
 
   /**
+   * @param groupId
+   */
+  const remove = async (groupId: WordsGroupId) => {
+    (await connect).delete(TABLE, groupId);
+  };
+
+  /**
    * @param cardId
    */
   const removeAllByCardId = async (cardId: WordsCardId) => {
@@ -106,6 +113,7 @@ export const createApi = (connect: Connect) => {
   return {
     createByCardId,
     update,
+    remove,
     removeAllByCardId,
     findAllbyCardId,
   };

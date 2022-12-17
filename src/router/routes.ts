@@ -9,4 +9,12 @@ export const routes: RouteRecordRaw[] = [
       pageTitle: "Главная",
     },
   },
+  {
+    path: "/words",
+    name: "words",
+    component: () => import("../pages/Words/PageWords.vue"),
+    meta: {
+      pageTitle: "Words",
+    },
+  },
 ];
