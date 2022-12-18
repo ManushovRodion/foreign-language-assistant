@@ -16,6 +16,10 @@ const props = defineProps({
     type: String,
     default: "",
   },
+  disabled: {
+    type: Boolean,
+    default: false,
+  },
 });
 
 const emit = defineEmits<{
@@ -29,23 +33,24 @@ const update = (event: Event) => {
 </script>
 
 <template>
-  <div class="ui-input">
-    <label v-if="props.label" :for="idComponent" class="ui-input__label">
+  <div class="ui-input-text">
+    <label v-if="props.label" :for="idComponent" class="ui-input-text__label">
       {{ props.label }}
     </label>
     <input
       :id="idComponent"
-      class="ui-input__input"
+      class="ui-input-text__input"
       type="text"
-      @input="update"
-      :value="props.modelValue"
       :placeholder="props.placeholder"
+      :disabled="props.disabled"
+      :value="props.modelValue"
+      @input="update"
     />
   </div>
 </template>
 
 <style lang="scss">
-.ui-input {
+.ui-input-text {
   display: inline-flex;
   width: 100%;
   flex-direction: column;
