@@ -36,18 +36,22 @@ const remove = () => emit("remove");
   <div :class="[$style.wrapper, !isValid ? $style['wrapper_no-valid'] : '']">
     <div :class="$style.row">
       <UiInputText
-        :class="$style['first-element']"
+        :class="[$style['first-element'], $style['ui-input']]"
         placeholder="Значение на иностранном"
         v-model.lazy="data.original"
         @update:model-value="update"
       />
       <UiInputText
-        :class="$style['second-element']"
+        :class="[$style['second-element'], $style['ui-input']]"
         placeholder="Значение на родном"
         v-model.lazy="data.translate"
         @update:model-value="update"
       />
-      <UiBtn v-if="isValid" :class="$style['third-element']" @click="remove">
+      <UiBtn
+        v-if="isValid"
+        :class="[$style['third-element'], $style['ui-btn']]"
+        @click="remove"
+      >
         Удалить
       </UiBtn>
     </div>
@@ -68,7 +72,7 @@ const remove = () => emit("remove");
 
   &_no-valid {
     background-color: rgba(#343a40, 0.1);
-    margin: 15px -15px 0 -15px;
+    margin: 15px -15px 20px -15px;
     padding: 15px;
   }
 }

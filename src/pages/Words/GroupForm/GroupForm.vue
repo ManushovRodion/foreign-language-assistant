@@ -10,6 +10,7 @@ import { useEventBusGroupForm } from "../useEventBusGroupForm";
 import { useToggle } from "@/uses/useToggle";
 import { useGroupForm } from "./useGroupForm";
 import type { Group } from "../types";
+import UiInputSelect from "@/components/ui/UiInputSelect.vue";
 
 const modal = useToggle(false);
 const eventBus = useEventBusGroupForm();
@@ -80,9 +81,15 @@ const remove = async () => {
       @update="(v) => formGroup.updateItem(v, item.key)"
     />
 
-    <p v-if="formGroup.error.value">
-      {{ formGroup.error.value }}
-    </p>
+    <UiInputSelect
+      class="mb_0"
+      label="Метки"
+      :options="[
+        { id: 1, name: 'test' },
+        { id: 2, name: 'test2' },
+      ]"
+      v-model="formGroup.dataLabels.value"
+    />
 
     <template #action>
       <UiBtn v-if="formGroup.data.id" @click="remove()"> Удалить </UiBtn>
