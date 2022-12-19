@@ -1,7 +1,6 @@
 import { ref, reactive } from "vue";
 import type { Group, GroupItem, GroupLabel } from "../types";
 import { dataBase } from "@/dataBase";
-import type { WordsItem } from "@/dataBase/WordsItem";
 
 type GroupData = Pick<Group, "id" | "cardId" | "title">;
 type IndexKey = number;
@@ -9,8 +8,6 @@ type IndexKey = number;
 interface GroupDataItem extends GroupItem {
   key: IndexKey;
 }
-
-let groupDataItemIndexKey: IndexKey = 0;
 
 const defineItem = (key: IndexKey): GroupDataItem => {
   return {
@@ -21,6 +18,8 @@ const defineItem = (key: IndexKey): GroupDataItem => {
 };
 
 export const useGroupForm = () => {
+  let groupDataItemIndexKey: IndexKey = 1;
+
   const data = reactive<GroupData>({ id: 0, cardId: 0, title: "" });
   const dataItems = ref<GroupDataItem[]>([]);
   const dataLabels = ref<GroupLabel[]>([]);
@@ -39,13 +38,12 @@ export const useGroupForm = () => {
     data.cardId = group?.cardId || 0;
     data.title = group?.title || "";
 
-    dataItems.value = (group?.items || []).map((group) => {
+    const groups = [...(group?.items || []), { translate: "", original: "" }];
+
+    dataItems.value = groups.map((group) => {
       groupDataItemIndexKey++;
       return { ...group, key: groupDataItemIndexKey };
     });
-
-    groupDataItemIndexKey++;
-    dataItems.value.push(defineItem(groupDataItemIndexKey));
 
     dataLabels.value = group?.labels || [];
   };
@@ -132,7 +130,6 @@ export const useGroupForm = () => {
 
     if (!dataItems.value.length) {
       groupDataItemIndexKey++;
-
       dataItems.value.push(defineItem(groupDataItemIndexKey));
     }
   };
@@ -151,8 +148,8 @@ export const useGroupForm = () => {
       const index = dataItems.value.findIndex(
         (v) => !v.original || !v.translate
       );
-      if (index > -1) return;
 
+      if (index > -1) return;
       groupDataItemIndexKey++;
       dataItems.value.push(defineItem(groupDataItemIndexKey));
     }
