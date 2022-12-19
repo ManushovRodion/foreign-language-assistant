@@ -1,31 +1,29 @@
 <script setup lang="ts">
-import { useSlots, computed } from "vue";
+import { useSlots } from "vue";
 
 const slots = useSlots();
-
-const isViewCardHeaderTitle = computed(() => slots?.title);
-const isViewCardHeaderAction = computed(() => slots?.action);
-const isViewCardHeader = computed(
-  () => isViewCardHeaderTitle || isViewCardHeaderAction
-);
 </script>
 
 <template>
   <div class="ui-card">
-    <div class="ui-card-header" v-if="isViewCardHeader">
+    <div class="ui-card-header" v-if="slots?.title || slots?.action">
       <div
+        v-if="slots?.title"
         class="ui-card-header__title"
-        v-if="isViewCardHeaderTitle"
-        :style="{ marginRight: isViewCardHeader ? '10px' : '0px' }"
+        :style="{ marginRight: slots?.action ? '10px' : '0px' }"
       >
         <slot name="title" />
       </div>
-      <div class="ui-card-header__action" v-if="isViewCardHeaderAction">
+      <div class="ui-card-header__action" v-if="slots?.action">
         <slot name="action" />
       </div>
     </div>
     <div class="ui-card-context">
       <slot />
+    </div>
+
+    <div class="ui-card-footer" v-if="slots?.footer">
+      <slot name="footer" />
     </div>
   </div>
 </template>
@@ -37,6 +35,9 @@ const isViewCardHeader = computed(
   box-shadow: 0 2px 1px -1px rgb(0 0 0 / 20%), 0 1px 1px 0 rgb(0 0 0 / 14%),
     0 1px 3px 0 rgb(0 0 0 / 12%);
   border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 
   &-header {
     display: flex;
@@ -58,6 +59,12 @@ const isViewCardHeader = computed(
 
   &-context {
     padding: 15px;
+  }
+
+  &-footer {
+    display: flex;
+    align-items: center;
+    padding: 0 15px 15px 15px;
   }
 }
 

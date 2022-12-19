@@ -26,7 +26,7 @@ const classNames = computed(() => {
   classNames.push(`ui-btn_design-${props.design}`);
 
   if (props.disabled) {
-    classNames.push(`ui-btn_${props.disabled}`);
+    classNames.push(`ui-btn_disabled`);
   }
 
   return classNames;
@@ -74,7 +74,9 @@ const classNames = computed(() => {
   }
 
   &_disabled {
+    background-color: var(--primary-color);
     opacity: 0.8;
+    cursor: default;
   }
 }
 </style>

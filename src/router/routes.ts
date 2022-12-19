@@ -3,10 +3,14 @@ import type { RouteRecordRaw } from "vue-router";
 export const routes: RouteRecordRaw[] = [
   {
     path: "/",
-    name: "home",
-    component: () => import("../views/Home/HomeView.vue"),
+    redirect: "/words",
+  },
+  {
+    path: "/words",
+    name: "words",
+    component: () => import("../pages/Words/PageWords.vue"),
     meta: {
-      pageTitle: "Главная",
+      pageTitle: "Words",
     },
   },
 ];

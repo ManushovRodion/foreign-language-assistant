@@ -4,7 +4,7 @@ import { getCurrentInstance } from "vue";
 const idComponent = `input-${getCurrentInstance()?.uid}`;
 
 const props = defineProps({
-  value: {
+  modelValue: {
     type: String,
     default: "",
   },
@@ -16,36 +16,41 @@ const props = defineProps({
     type: String,
     default: "",
   },
+  disabled: {
+    type: Boolean,
+    default: false,
+  },
 });
 
 const emit = defineEmits<{
-  (e: "input", value: string): void;
+  (e: "update:modelValue", value: string): void;
 }>();
 
 const update = (event: Event) => {
   const value = (event.target as HTMLInputElement).value;
-  emit("input", value.trim());
+  emit("update:modelValue", value.trim());
 };
 </script>
 
 <template>
-  <div class="ui-input">
-    <label v-if="props.label" :for="idComponent" class="ui-input__label">
+  <div class="ui-input-text">
+    <label v-if="props.label" :for="idComponent" class="ui-input-text__label">
       {{ props.label }}
     </label>
     <input
       :id="idComponent"
-      class="ui-input__input"
+      class="ui-input-text__input"
       type="text"
-      @input="update"
-      :value="props.value"
       :placeholder="props.placeholder"
+      :disabled="props.disabled"
+      :value="props.modelValue"
+      @input="update"
     />
   </div>
 </template>
 
 <style lang="scss">
-.ui-input {
+.ui-input-text {
   display: inline-flex;
   width: 100%;
   flex-direction: column;
