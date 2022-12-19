@@ -28,19 +28,23 @@ const eventBus = useEventBusGroupForm();
       </header>
 
       <section :class="$style.items">
-        <span
-          v-for="(item, index) in props.value.items"
-          :key="index"
-          :class="$style['items-item']"
-        >
-          <UiTooltip>
-            {{ item.original }};
+        <template v-if="props.value.items.length">
+          <span
+            v-for="(item, index) in props.value.items"
+            :key="index"
+            :class="$style['items-item']"
+          >
+            <UiTooltip>
+              {{ item.original }};
 
-            <template #data>
-              {{ item.translate }}
-            </template>
-          </UiTooltip>
-        </span>
+              <template #data>
+                {{ item.translate }}
+              </template>
+            </UiTooltip>
+          </span>
+        </template>
+
+        <p v-else>Нет слов/фраз... Необходимо <strong>добавить</strong>...</p>
       </section>
 
       <footer v-if="props.value.labels.length" :class="$style.footer">
