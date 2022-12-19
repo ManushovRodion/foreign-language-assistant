@@ -13,9 +13,10 @@ const defineCard = (): Card => {
 export const useCard = () => {
   let data = reactive<Card>(defineCard());
   const loading = ref(false);
+  const isGroups = ref(false);
   const error = ref("");
 
-  const { WordsCard } = dataBase.table;
+  const { WordsCard, WordsGroup } = dataBase.table;
 
   const dateCreated = computed(() => {
     return format(data.dateCreated, FORMAT_DATE);
@@ -71,15 +72,52 @@ export const useCard = () => {
     loading.value = false;
   };
 
+  /**
+   * Удаление карточки
+   */
+  const remove = async () => {
+    loading.value = true;
+    error.value = "";
+
+    try {
+      await WordsCard.remove(data.id);
+    } catch (e) {
+      error.value = String(e);
+    }
+
+    loading.value = false;
+  };
+
+  /**
+   * Возвращает: если группы у карточки
+   * @returns
+   */
+  const findGroups = async () => {
+    loading.value = true;
+    error.value = "";
+
+    try {
+      const groups = await WordsGroup.findAllbyCardId(data.id);
+      isGroups.value = !!groups.length;
+    } catch (e) {
+      error.value = String(e);
+    }
+
+    loading.value = false;
+  };
+
   return {
     data,
     loading,
     error,
+    isGroups,
 
     dateCreated,
 
     setup,
     updateTitle,
     create,
+    remove,
+    findGroups,
   };
 };
