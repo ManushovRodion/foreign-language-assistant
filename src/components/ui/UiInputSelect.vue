@@ -2,10 +2,12 @@
 import { getCurrentInstance, ref, computed, onUnmounted, onMounted } from "vue";
 import type { PropType, ComponentPublicInstance } from "vue";
 
+import IconRemove from "../icon/IconSquare.vue";
+
 const idComponent = `input-select-${getCurrentInstance()?.uid}`;
 
 type ListItem = {
-  id: number;
+  id?: number;
   name: string;
 };
 
@@ -30,6 +32,14 @@ const props = defineProps({
     type: Boolean,
     default: false,
   },
+  multiple: {
+    type: Boolean,
+    default: false,
+  },
+  combox: {
+    type: Boolean,
+    default: false,
+  },
 });
 
 const emit = defineEmits<{
@@ -50,6 +60,8 @@ const isViewOptions = computed(() => {
 });
 
 const inputValue = computed(() => {
+  if (props.multiple) return search.value;
+
   return props.modelValue[0]?.name || search.value;
 });
 
@@ -58,13 +70,22 @@ const update = (event: Event) => {
   search.value = value.trim();
 };
 
+const comboxUpdate = (event: Event) => {
+  if (!props.combox) return;
+
+  let value = (event.target as HTMLInputElement).value;
+  value = value.trim();
+
+  if (!value) return;
+  select({ name: value });
+};
+
 const back = (event: MouseEvent) => {
   if (!element.value || !event.target) return;
 
   const parent = element.value as HTMLElement;
   const child = event.target as HTMLElement;
 
-  console.log(parent, child);
   if (!parent.contains(child)) {
     search.value = "";
   }
@@ -72,7 +93,27 @@ const back = (event: MouseEvent) => {
 
 const select = (item: ListItem) => {
   search.value = "";
+
+  if (props.multiple) {
+    if (isSelected(item.name)) {
+      removeItem(item.name);
+      return;
+    }
+
+    emit("update:modelValue", [...props.modelValue, item]);
+    return;
+  }
+
   emit("update:modelValue", [item]);
+};
+
+const removeItem = (name: ListItem["name"]) => {
+  const items = props.modelValue.filter((item) => item.name !== name);
+  emit("update:modelValue", items);
+};
+
+const isSelected = (name: ListItem["name"]) => {
+  return !!props.modelValue.find((item) => item.name === name);
 };
 
 onMounted(() => {
@@ -90,6 +131,17 @@ onUnmounted(() => {
       {{ props.label }}
     </label>
 
+    <div v-if="props.multiple" class="ui-input-select__multiple">
+      <div
+        v-for="item in props.modelValue"
+        :key="item.id"
+        class="ui-input-select__multiple-item"
+      >
+        <span>{{ item.name }}</span>
+        <IconRemove @click="removeItem(item.name)" />
+      </div>
+    </div>
+
     <input
       :id="idComponent"
       class="ui-input-select__input"
@@ -98,6 +150,7 @@ onUnmounted(() => {
       :disabled="props.disabled"
       :value="inputValue"
       @input="update"
+      @change="comboxUpdate"
     />
 
     <div v-if="isViewOptions" class="ui-input-select__options-wrapper">
@@ -106,6 +159,9 @@ onUnmounted(() => {
           v-for="option in items"
           :key="option.id"
           class="ui-input-select__option"
+          :class="{
+            'ui-input-select__option_active': isSelected(option.name),
+          }"
           @click="select(option)"
         >
           {{ option.name }}
@@ -163,6 +219,30 @@ onUnmounted(() => {
     background-color: rgba(#343a40, 0.1);
     cursor: pointer;
     user-select: none;
+
+    &_active {
+      background-color: rgba(#343a40, 0.5);
+    }
+  }
+
+  &__multiple {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 5px;
+    margin-bottom: 7px;
+  }
+
+  &__multiple-item {
+    display: flex;
+    margin-right: 5px;
+    align-items: center;
+    background-color: rgba(#343a40, 0.1);
+    padding: 2px 5px;
+    border-radius: 5px;
+
+    & span {
+      padding-right: 5px;
+    }
   }
 }
 </style>

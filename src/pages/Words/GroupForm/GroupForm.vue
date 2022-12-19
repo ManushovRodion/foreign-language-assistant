@@ -4,36 +4,41 @@ import { watchEffect } from "vue";
 import UiModal from "@/components/ui/UiModal.vue";
 import UiInputText from "@/components/ui/UiInputText.vue";
 import UiBtn from "@/components/ui/UiBtn.vue";
+import UiInputSelect from "@/components/ui/UiInputSelect.vue";
 import GroupFormRow from "./GroupFormRow.vue";
 
 import { useEventBusGroupForm } from "../useEventBusGroupForm";
+import { useLabels } from "@/uses/useLabels";
 import { useToggle } from "@/uses/useToggle";
 import { useGroupForm } from "./useGroupForm";
+
 import type { Group } from "../types";
-import UiInputSelect from "@/components/ui/UiInputSelect.vue";
 
 const modal = useToggle(false);
 const eventBus = useEventBusGroupForm();
 const formGroup = useGroupForm();
+const labels = useLabels();
 
 watchEffect(() => {
-  if (eventBus.process === "ON_CREATED" || eventBus.process === "ON_UPDATE") {
-    if (eventBus.process === "ON_UPDATE") {
-      formGroup.setup(eventBus.data.group);
-    }
+  if (!eventBus.isProcessOn) return;
 
-    if (eventBus.process === "ON_CREATED" && eventBus.data.cardId) {
-      const group: Group = {
-        id: 0,
-        cardId: eventBus.data.cardId,
-        title: "",
-        items: [],
-        labels: [],
-      };
+  if (eventBus.process === "ON_UPDATE") {
+    formGroup.setup(eventBus.data.group);
+    modal.onActive();
 
-      formGroup.setup(group);
-    }
+    return;
+  }
 
+  if (eventBus.process === "ON_CREATED" && eventBus.data.cardId) {
+    const group: Group = {
+      id: 0,
+      cardId: eventBus.data.cardId,
+      title: "",
+      items: [],
+      labels: [],
+    };
+
+    formGroup.setup(group);
     modal.onActive();
   }
 });
@@ -47,8 +52,6 @@ const save = async () => {
   await formGroup.save();
   modal.onNotActive();
 
-  console.log(eventBus.data.groupId, formGroup.data, formGroup.error);
-
   if (!eventBus.data.groupId) {
     eventBus.onNextCreated();
   } else {
@@ -61,6 +64,8 @@ const remove = async () => {
   modal.onNotActive();
   eventBus.onNextRemove();
 };
+
+labels.setup();
 </script>
 
 <template>
@@ -84,10 +89,9 @@ const remove = async () => {
     <UiInputSelect
       class="mb_0"
       label="Метки"
-      :options="[
-        { id: 1, name: 'test' },
-        { id: 2, name: 'test2' },
-      ]"
+      :options="labels.data"
+      multiple
+      combox
       v-model="formGroup.dataLabels.value"
     />
 

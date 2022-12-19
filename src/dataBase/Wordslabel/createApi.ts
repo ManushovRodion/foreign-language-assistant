@@ -39,7 +39,7 @@ export const createApi = (connect: Connect) => {
     await tx.done;
 
     if (!labelId) {
-      labelId = await link.add(TABLE, value);
+      labelId = await link.add(TABLE, { name: value.name });
     }
 
     await link.add(LINK_TABLE_GROUP, { labelId, groupId });
@@ -106,9 +106,34 @@ export const createApi = (connect: Connect) => {
     return Promise.all(promise);
   };
 
+  /**
+   *
+   */
+  const findAll = async () => {
+    const link = await connect;
+    const cards: WordsLabel[] = [];
+
+    const tx = link.transaction(TABLE);
+    let cursor = await tx.store.openCursor(null, "prev");
+
+    while (cursor) {
+      cards.push({
+        ...cursor.value,
+        id: cursor.key,
+      });
+
+      cursor = await cursor.continue();
+    }
+
+    tx.done;
+
+    return cards;
+  };
+
   return {
     createByGroupId,
     removeAllByGroupId,
     findAllByGroupId,
+    findAll,
   };
 };

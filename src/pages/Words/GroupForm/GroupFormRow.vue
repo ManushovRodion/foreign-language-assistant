@@ -50,7 +50,7 @@ const remove = () => emit("remove");
       <UiBtn
         v-if="isValid"
         :class="[$style['third-element'], $style['ui-btn']]"
-        @click="remove"
+        @click.stop="remove"
       >
         Удалить
       </UiBtn>
