@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+import { watchEffect } from "vue";
 import type { PropType } from "vue";
 
 import UiCard from "@/components/ui/UiCard.vue";
@@ -18,10 +19,26 @@ const props = defineProps({
   },
 });
 
+const emit = defineEmits<{
+  (e: "remove"): void;
+}>();
+
 const card = useCard();
-const eventFus = useEventBusGroupForm();
+const eventBus = useEventBusGroupForm();
+
+watchEffect(() => {
+  if (eventBus.isProcessNext) {
+    card.findGroups();
+  }
+});
+
+const remove = async () => {
+  await card.remove();
+  emit("remove");
+};
 
 card.setup(props.value);
+card.findGroups();
 </script>
 
 <template>
@@ -45,9 +62,10 @@ card.setup(props.value);
     <template #action>
       <div :class="$style.action">
         <UiBtn
+          v-if="card.isGroups.value"
           class="mr_5"
           :class="$style['ui-btn']"
-          @click="eventFus.onCreated(card.data)"
+          @click="eventBus.onCreated(card.data)"
         >
           Добавить
         </UiBtn>
@@ -55,7 +73,26 @@ card.setup(props.value);
       </div>
     </template>
 
-    <GroupList :card-id="card.data.id" />
+    <GroupList :card-id="card.data.id">
+      <template #not-items>
+        <div :class="$style.container">
+          <p>
+            Нет элементов. Необходимо <strong>добавить</strong>, для отображения
+            или <strong>удалить</strong> карточку
+          </p>
+
+          <div :class="$style['btn-groups']">
+            <UiBtn
+              :class="$style['ui-btn']"
+              @click="eventBus.onCreated(card.data)"
+            >
+              Добавить
+            </UiBtn>
+            <UiBtn :class="$style['ui-btn']" @click="remove"> Удалить </UiBtn>
+          </div>
+        </div>
+      </template>
+    </GroupList>
   </UiCard>
 </template>
 
@@ -65,6 +102,29 @@ card.setup(props.value);
 
   .ui-input {
     margin-bottom: 0;
+  }
+}
+
+.container {
+  min-height: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  flex-direction: column;
+}
+
+.btn-groups {
+  margin-top: 70px;
+  padding-left: 15px;
+  padding-right: 15px;
+
+  .ui-btn {
+    margin-bottom: 0;
+
+    &:first-child {
+      margin-right: 10px;
+    }
   }
 }
 
@@ -87,6 +147,15 @@ card.setup(props.value);
   }
   .action {
     margin-left: 15px;
+  }
+
+  .btn-groups {
+    display: flex;
+    width: 100%;
+
+    .ui-btn {
+      width: 100%;
+    }
   }
 }
 </style>

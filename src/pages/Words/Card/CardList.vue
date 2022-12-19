@@ -26,6 +26,7 @@ const isViewCardEmpty = computed(() => {
       v-for="card in cards.data.value"
       :key="card.id"
       :value="card"
+      @remove="cards.setup"
     />
   </template>
 </template>
