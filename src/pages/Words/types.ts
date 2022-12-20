@@ -29,3 +29,5 @@ export interface Group {
   items: GroupItem[];
   labels: GroupLabel[];
 }
+
+export interface DictorItem extends GroupItem {}

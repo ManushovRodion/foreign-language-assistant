@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import type { PropType } from "vue";
+import { ref } from "vue";
 
 import UiCheckbox from "@/components/ui/UiCheckbox.vue";
 import UiTooltip from "@/components/ui/UiTooltip.vue";
@@ -7,6 +8,9 @@ import UiBadge from "@/components/ui/UiBadge.vue";
 import UiBtn from "@/components/ui/UiBtn.vue";
 
 import { useEventBusGroupForm } from "../useEventBusGroupForm";
+import { useEventBusGroupDictor } from "../useEventBusGroupDictor";
+import { useEventBusCardsDictor } from "../useEventBusCardsDictor";
+
 import type { Group } from "../types";
 
 const props = defineProps({
@@ -16,14 +20,29 @@ const props = defineProps({
   },
 });
 
-const eventBus = useEventBusGroupForm();
+const check = ref(false);
+
+const eventBusForm = useEventBusGroupForm();
+const eventBusDictor = useEventBusGroupDictor();
+const eventBusDictorCard = useEventBusCardsDictor();
+
+const checkbox = () => {
+  const { items, id, cardId } = props.value;
+
+  if (check.value) eventBusDictorCard.pushItems(items, id, cardId);
+  else eventBusDictorCard.removeItems(id, cardId);
+};
 </script>
 
 <template>
   <div :class="$style.wrapper">
     <div>
       <header :class="$style.header">
-        <UiCheckbox :class="$style['ui-checkbox']" />
+        <UiCheckbox
+          :class="$style['ui-checkbox']"
+          v-model="check"
+          @update:model-value="checkbox()"
+        />
         <span>{{ props.value.title || "..." }}</span>
       </header>
 
@@ -60,10 +79,19 @@ const eventBus = useEventBusGroupForm();
     </div>
 
     <div :class="$style.action">
-      <UiBtn :class="$style['ui-btn']" @click="eventBus.onUpdate(props.value)">
+      <UiBtn
+        :class="$style['ui-btn']"
+        @click="eventBusForm.onUpdate(props.value)"
+      >
         Изменить
       </UiBtn>
-      <UiBtn :class="$style['ui-btn']">Диктор</UiBtn>
+      <UiBtn
+        :class="$style['ui-btn']"
+        :disabled="!props.value.items.length"
+        @click="eventBusDictor.open(props.value.items)"
+      >
+        Диктор
+      </UiBtn>
     </div>
   </div>
 </template>

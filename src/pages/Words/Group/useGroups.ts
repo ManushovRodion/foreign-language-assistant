@@ -19,6 +19,7 @@ export const useGroups = () => {
     error.value = "";
 
     try {
+      data.value = [];
       const groups = await WordsGroup.findAllbyCardId(cardId);
 
       const promise = groups.map(async (group) => {

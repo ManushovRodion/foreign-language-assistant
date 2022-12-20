@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { watchEffect } from "vue";
+import { watchEffect, computed } from "vue";
 import type { PropType } from "vue";
 
 import UiCard from "@/components/ui/UiCard.vue";
@@ -9,6 +9,7 @@ import GroupList from "../Group/GroupList.vue";
 
 import { useCard } from "./useCard";
 import { useEventBusGroupForm } from "../useEventBusGroupForm";
+import { useEventBusCardsDictor } from "../useEventBusCardsDictor";
 
 import type { Card } from "../types";
 
@@ -24,10 +25,15 @@ const emit = defineEmits<{
 }>();
 
 const card = useCard();
-const eventBus = useEventBusGroupForm();
+const eventBusForm = useEventBusGroupForm();
+const eventBusDictor = useEventBusCardsDictor();
+
+const isActiveDictor = computed(() => {
+  return eventBusDictor.hasData(card.data.id);
+});
 
 watchEffect(() => {
-  if (eventBus.isProcessNext) {
+  if (eventBusForm.isProcessNext) {
     card.findGroups();
   }
 });
@@ -65,11 +71,17 @@ card.findGroups();
           v-if="card.isGroups.value"
           class="mr_5"
           :class="$style['ui-btn']"
-          @click="eventBus.onCreated(card.data)"
+          @click="eventBusForm.onCreated(card.data)"
         >
           Добавить
         </UiBtn>
-        <UiBtn :class="$style['ui-btn']">Диктор</UiBtn>
+        <UiBtn
+          :class="$style['ui-btn']"
+          :disabled="!isActiveDictor"
+          @click="eventBusDictor.open(card.data.id)"
+        >
+          Диктор
+        </UiBtn>
       </div>
     </template>
 
@@ -84,7 +96,7 @@ card.findGroups();
           <div :class="$style['btn-groups']">
             <UiBtn
               :class="$style['ui-btn']"
-              @click="eventBus.onCreated(card.data)"
+              @click="eventBusForm.onCreated(card.data)"
             >
               Добавить
             </UiBtn>
