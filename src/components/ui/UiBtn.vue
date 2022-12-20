@@ -75,7 +75,7 @@ const classNames = computed(() => {
 
   &_disabled {
     background-color: var(--primary-color);
-    opacity: 0.8;
+    opacity: 0.3;
     cursor: default;
   }
 }

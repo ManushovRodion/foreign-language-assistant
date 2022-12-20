@@ -41,29 +41,31 @@ const viewMobileClosed = window.innerWidth <= 768;
 
 <template>
   <div class="ui-modal" v-if="modelValue">
-    <UiCard class="ui-modal-wrapper">
-      <template #title v-if="slots?.header">
-        <slot name="header" />
-      </template>
+    <div class="ui-modal-wrapper">
+      <UiCard>
+        <template #title v-if="slots?.header">
+          <slot name="header" />
+        </template>
 
-      <template #action v-if="actionClosed && !viewMobileClosed">
-        <UiBtn class="mb_0" @click="toggle">Отменить/Закрыть</UiBtn>
-      </template>
+        <template #action v-if="actionClosed && !viewMobileClosed">
+          <UiBtn class="mb_0" @click="toggle">Отменить/Закрыть</UiBtn>
+        </template>
 
-      <slot />
+        <slot />
 
-      <template #footer>
-        <div
+        <template
+          #footer
           v-if="(actionClosed && viewMobileClosed) || slots?.action"
-          class="ui-modal-footer"
         >
-          <UiBtn v-if="actionClosed && viewMobileClosed" @click="toggle">
-            Отменить/Закрыть
-          </UiBtn>
-          <slot name="action" />
-        </div>
-      </template>
-    </UiCard>
+          <div class="ui-modal-footer">
+            <UiBtn v-if="actionClosed && viewMobileClosed" @click="toggle">
+              Отменить/Закрыть
+            </UiBtn>
+            <slot name="action" />
+          </div>
+        </template>
+      </UiCard>
+    </div>
   </div>
 </template>
 
@@ -80,11 +82,14 @@ const viewMobileClosed = window.innerWidth <= 768;
   justify-content: center;
   align-items: center;
   padding: 15px;
+  overflow: auto;
 
   &-wrapper {
     width: 100%;
     max-width: 600px;
     min-height: 100px;
+    max-height: 500px;
+    margin-bottom: 100px;
   }
 
   &-footer {

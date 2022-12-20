@@ -64,7 +64,6 @@ export const useEventBusGroupForm = defineStore("EventBusGroupForm", () => {
    */
   const onNextCreated = () => {
     process.value = "NEXT_CREATED";
-    data.value = {};
   };
 
   /**
@@ -86,7 +85,6 @@ export const useEventBusGroupForm = defineStore("EventBusGroupForm", () => {
    */
   const onNextUpdate = () => {
     process.value = "NEXT_UPDATE";
-    data.value = {};
   };
 
   /**
@@ -108,7 +106,6 @@ export const useEventBusGroupForm = defineStore("EventBusGroupForm", () => {
    */
   const onNextRemove = () => {
     process.value = "NEXT_REMOVE";
-    data.value = {};
   };
 
   return {

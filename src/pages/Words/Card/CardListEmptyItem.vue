@@ -16,7 +16,10 @@ const emit = defineEmits<{
 }>();
 
 watchEffect(() => {
-  if (eventBus.process === "NEXT_CREATED") {
+  if (
+    eventBus.process === "NEXT_CREATED" &&
+    eventBus.data.cardId === card.data.id
+  ) {
     emit("saved");
   }
 });
@@ -49,7 +52,7 @@ const create = async () => {
 
     <template #action>
       <div :class="$style.action">
-        <UiBtn :class="$style['ui-btn']" @click="create()"> Добавить </UiBtn>
+        <UiBtn :class="$style['ui-btn']" @click="create()">Добавить</UiBtn>
       </div>
     </template>
 
