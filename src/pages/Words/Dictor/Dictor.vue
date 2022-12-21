@@ -69,13 +69,6 @@ const result = (items: DictorItem[]) => {
 <style lang="scss" module>
 .container {
   margin-top: 50px;
-  margin-bottom: 50px;
   user-select: none;
-}
-
-@media (max-width: 768px) {
-  .container {
-    display: block;
-  }
 }
 </style>
