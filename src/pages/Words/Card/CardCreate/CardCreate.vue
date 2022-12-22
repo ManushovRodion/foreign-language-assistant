@@ -36,19 +36,26 @@ const daysMont = computed(() => {
   return getDaysInMonth(date);
 });
 
+// @TODO надо делать нормальную систему валидации - пока эксперимент
 const isErrorYear = computed(() => +form.value.year < 2020);
+const isErrorYearCountChar = computed(() => form.value.year.length > 4);
 const isErrorMonthMin = computed(() => +form.value.month < 1);
 const isErrorMonthMax = computed(() => +form.value.month > 12);
+const isErrorMonthCountChar = computed(() => form.value.month.length > 2);
 const isErrorDayMin = computed(() => +form.value.day < 1);
 const isErrorDayMax = computed(() => +form.value.day > daysMont.value);
+const isErrorDayCountChar = computed(() => form.value.day.length > 2);
 
 const isError = computed(
   () =>
     isErrorYear.value ||
+    isErrorYearCountChar.value ||
     isErrorMonthMin.value ||
     isErrorMonthMax.value ||
+    isErrorMonthCountChar.value ||
     isErrorDayMin.value ||
-    isErrorDayMin.value
+    isErrorDayMax.value ||
+    isErrorDayCountChar.value
 );
 
 const modal = useToggle(false);
@@ -111,21 +118,31 @@ const create = async () => {
       </div>
 
       <div v-if="isError || error" style="color: tomato">
-        <small v-if="isErrorYear">- Год должен быть не младьше 2020; </small>
-        <br />
+        <small v-if="isErrorYear">- Год должен быть не младьше 2020;</small>
+        <small v-if="isErrorYearCountChar">
+          - В году не может быть больше 4 символов!; <br />
+        </small>
+
         <small v-if="isErrorMonthMin">
-          - Значение месяца не может быть меньше 1;
+          - Значение месяца не может быть меньше 1; <br />
         </small>
         <small v-if="isErrorMonthMax">
-          - Значение месяца не может быть больше 12;
+          - Значение месяца не может быть больше 12; <br />
         </small>
-        <br />
+        <small v-if="isErrorMonthCountChar">
+          - В месяце не может быть больше 2 символов!; <br />
+        </small>
+
         <small v-if="isErrorDayMin">
-          - Значение дня не может быть меньше 1;
+          - Значение дня не может быть меньше 1; <br />
         </small>
         <small v-if="isErrorDayMax">
-          - Значение дня не может быть больше {{ daysMont }};
+          - Значение дня не может быть больше {{ daysMont }}; <br />
         </small>
+        <small v-if="isErrorDayCountChar">
+          - В дне не может быть больше 2 символов!; <br />
+        </small>
+
         <small v-if="error">
           {{ error }}
         </small>
