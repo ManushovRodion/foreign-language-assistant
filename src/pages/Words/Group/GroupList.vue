@@ -33,9 +33,13 @@ watchEffect(() => {
 
   <p v-if="groups.loading.value">Загрузка...</p>
 
-  <GroupListItem
-    v-for="group in groups.data.value"
-    :key="group.id"
-    :value="group"
-  />
+  <template v-if="groups.data.value.length">
+    <GroupListItem
+      v-for="group in groups.data.value"
+      :key="group.id"
+      :value="group"
+    />
+  </template>
+
+  <slot v-else name="not-items" />
 </template>

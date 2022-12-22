@@ -2,6 +2,8 @@
 import { computed } from "vue";
 import CardListEmptyItem from "./CardListEmptyItem.vue";
 import CardListItem from "./CardListItem.vue";
+import CardCreate from "./CardCreate/CardCreate.vue";
+
 import { useCards } from "./useCards";
 
 const cards = useCards();
@@ -20,12 +22,15 @@ const isViewCardEmpty = computed(() => {
   <p v-if="cards.loading.value">Загрузка...</p>
 
   <template v-else>
+    <CardCreate @created="cards.setup()" />
+
     <CardListEmptyItem v-if="isViewCardEmpty" @saved="cards.setup" />
 
     <CardListItem
       v-for="card in cards.data.value"
       :key="card.id"
       :value="card"
+      @remove="cards.setup"
     />
   </template>
 </template>

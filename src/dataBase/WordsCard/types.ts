@@ -33,5 +33,6 @@ export interface DBSchema {
   [TABLE]: {
     value: TableWordsCard;
     key: WordsCardId;
+    indexes: { dateCreated: "dateCreated" };
   };
 }

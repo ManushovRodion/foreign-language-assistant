@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { getCurrentInstance } from "vue";
+import { getCurrentInstance, watchEffect, ref } from "vue";
 
 const idComponent = `input-${getCurrentInstance()?.uid}`;
 
@@ -20,6 +20,16 @@ const props = defineProps({
     type: Boolean,
     default: false,
   },
+  type: {
+    type: String,
+    default: "text",
+  },
+  max: {
+    type: [Number, String],
+  },
+  min: {
+    type: [Number, String],
+  },
 });
 
 const emit = defineEmits<{
@@ -27,8 +37,7 @@ const emit = defineEmits<{
 }>();
 
 const update = (event: Event) => {
-  const value = (event.target as HTMLInputElement).value;
-  emit("update:modelValue", value.trim());
+  emit("update:modelValue", (event.currentTarget as HTMLInputElement).value);
 };
 </script>
 
@@ -40,7 +49,9 @@ const update = (event: Event) => {
     <input
       :id="idComponent"
       class="ui-input-text__input"
-      type="text"
+      :type="props.type"
+      :max="props?.max"
+      :min="props?.min"
       :placeholder="props.placeholder"
       :disabled="props.disabled"
       :value="props.modelValue"

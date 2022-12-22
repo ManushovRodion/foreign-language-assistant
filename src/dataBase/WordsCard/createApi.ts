@@ -9,6 +9,7 @@ import type {
 
 import { TABLE } from "./constants";
 import { validRequered } from "../validations";
+import { format } from "date-fns";
 
 export const createApi = (connect: Connect) => {
   const create = async (value: CreateWordsCard) => {
@@ -72,7 +73,8 @@ export const createApi = (connect: Connect) => {
     const cards: WordsCard[] = [];
 
     const tx = link.transaction(TABLE);
-    let cursor = await tx.store.openCursor(null, "prev");
+    const index = tx.store.index("dateCreated");
+    let cursor = await index.openCursor(null, "prev");
 
     let limit = 10;
 
@@ -82,7 +84,7 @@ export const createApi = (connect: Connect) => {
 
       cards.push({
         ...cursor.value,
-        id: cursor.key,
+        id: cursor.primaryKey,
       });
 
       cursor = await cursor.continue();
@@ -93,12 +95,43 @@ export const createApi = (connect: Connect) => {
     return cards;
   };
 
+  /**
+   *
+   * @param cardId \
+   * @returns
+   */
   const find = async (cardId: WordsCardId) => {
     const card = await (await connect).get(TABLE, cardId);
+
     return {
       ...card,
       id: cardId,
     };
+  };
+
+  const findCardByDay = async (date: Date) => {
+    const dateFormat = "yyyy-MM-dd";
+    const dateSearch = format(date, dateFormat);
+
+    const link = await connect;
+    const tx = link.transaction(TABLE);
+
+    let cursor = await tx.store.openCursor(null, "prev");
+    while (cursor) {
+      const date = format(cursor.value.dateCreated, dateFormat);
+      if (date === dateSearch) {
+        tx.done;
+
+        return {
+          ...cursor.value,
+          id: cursor.key,
+        };
+      }
+
+      cursor = await cursor.continue();
+    }
+
+    tx.done;
   };
 
   return {
@@ -107,5 +140,6 @@ export const createApi = (connect: Connect) => {
     remove,
     findAll,
     find,
+    findCardByDay,
   };
 };

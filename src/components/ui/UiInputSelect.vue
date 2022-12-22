@@ -2,7 +2,7 @@
 import { getCurrentInstance, ref, computed, onUnmounted, onMounted } from "vue";
 import type { PropType, ComponentPublicInstance } from "vue";
 
-import IconRemove from "../icon/IconSquare.vue";
+import IconClose from "../icon/IconClose.vue";
 
 const idComponent = `input-select-${getCurrentInstance()?.uid}`;
 
@@ -138,7 +138,7 @@ onUnmounted(() => {
         class="ui-input-select__multiple-item"
       >
         <span>{{ item.name }}</span>
-        <IconRemove @click="removeItem(item.name)" />
+        <IconClose @click="removeItem(item.name)" />
       </div>
     </div>
 
@@ -242,6 +242,10 @@ onUnmounted(() => {
 
     & span {
       padding-right: 5px;
+    }
+
+    & svg {
+      cursor: pointer;
     }
   }
 }
