@@ -57,10 +57,13 @@ const save = async () => {
   } else {
     eventBus.onNextUpdate();
   }
+
+  labels.setup();
 };
 
 const remove = async () => {
   await formGroup.remove();
+  labels.setup();
   modal.onNotActive();
   eventBus.onNextRemove();
 };
