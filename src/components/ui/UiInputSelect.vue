@@ -70,24 +70,24 @@ const update = (event: Event) => {
   search.value = value.trim();
 };
 
-const comboxUpdate = (event: Event) => {
-  if (!props.combox) return;
-
-  let value = (event.target as HTMLInputElement).value;
-  value = value.trim();
-
-  if (!value) return;
-  select({ name: value });
-};
-
 const back = (event: MouseEvent) => {
   if (!element.value || !event.target) return;
 
   const parent = element.value as HTMLElement;
   const child = event.target as HTMLElement;
 
+  if (props.combox && search.value) {
+    select({ name: search.value });
+  }
+
   if (!parent.contains(child)) {
     search.value = "";
+  }
+};
+
+const keypress = (event: KeyboardEvent) => {
+  if (event.key === "Enter" && props.combox) {
+    select({ name: search.value });
   }
 };
 
@@ -150,7 +150,7 @@ onUnmounted(() => {
       :disabled="props.disabled"
       :value="inputValue"
       @input="update"
-      @change="comboxUpdate"
+      @keypress="keypress"
     />
 
     <div v-if="isViewOptions" class="ui-input-select__options-wrapper">
@@ -206,6 +206,7 @@ onUnmounted(() => {
   &__options {
     position: absolute;
     width: 100%;
+    z-index: 1000;
 
     background-color: #ffffff;
     border-left: 1px solid #ced4da;
