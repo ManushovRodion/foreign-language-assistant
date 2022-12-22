@@ -88,6 +88,13 @@ const create = async () => {
     <div :class="$style.container">
       <h2 :class="$style.title">Новая карточка</h2>
 
+      <p :class="$style.description">
+        <small>
+          Создание пустой карточки на определенный день. <br />Создать карточку
+          можно тогда, когда на этот день нет карточки.
+        </small>
+      </p>
+
       <div :class="$style.form">
         <UiInputText
           :class="$style['first-input']"
@@ -170,6 +177,11 @@ const create = async () => {
   text-transform: uppercase;
   font-size: 13px;
   text-align: center;
+}
+
+.description {
+  text-align: center;
+  margin-bottom: 50px;
 }
 
 .form {
