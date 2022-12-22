@@ -82,6 +82,15 @@ export const useEventBusCardsDictor = defineStore("EventBusCardDictor", () => {
     return !!data.value.find((item) => item.cardId === cardId);
   };
 
+  /**
+   * Запрашиват наличие данных для группы
+   * @param groupId
+   * @returns
+   */
+  const hasGroup = (groupId: GroupId) => {
+    return !!data.value.find((item) => item.groupId === groupId);
+  };
+
   return {
     data: dataList,
     fullData: data,
@@ -91,6 +100,8 @@ export const useEventBusCardsDictor = defineStore("EventBusCardDictor", () => {
     close,
     pushItems,
     removeItems,
+
     hasData,
+    hasGroup,
   };
 });
