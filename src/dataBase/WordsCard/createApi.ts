@@ -73,7 +73,8 @@ export const createApi = (connect: Connect) => {
     const cards: WordsCard[] = [];
 
     const tx = link.transaction(TABLE);
-    let cursor = await tx.store.openCursor(null, "prev");
+    const index = tx.store.index("dateCreated");
+    let cursor = await index.openCursor(null, "prev");
 
     let limit = 10;
 
@@ -83,7 +84,7 @@ export const createApi = (connect: Connect) => {
 
       cards.push({
         ...cursor.value,
-        id: cursor.key,
+        id: cursor.primaryKey,
       });
 
       cursor = await cursor.continue();

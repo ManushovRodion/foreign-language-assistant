@@ -24,6 +24,12 @@ const props = defineProps({
     type: String,
     default: "text",
   },
+  max: {
+    type: [Number, String],
+  },
+  min: {
+    type: [Number, String],
+  },
 });
 
 const emit = defineEmits<{
@@ -41,10 +47,11 @@ const update = (event: Event) => {
       {{ props.label }}
     </label>
     <input
-      v-bind="$attrs"
       :id="idComponent"
       class="ui-input-text__input"
       :type="props.type"
+      :max="props?.max"
+      :min="props?.min"
       :placeholder="props.placeholder"
       :disabled="props.disabled"
       :value="props.modelValue"
