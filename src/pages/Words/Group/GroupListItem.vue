@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import type { PropType } from "vue";
-import { ref } from "vue";
+import { computed } from "vue";
 
 import UiCheckbox from "@/components/ui/UiCheckbox.vue";
 import UiTooltip from "@/components/ui/UiTooltip.vue";
@@ -20,16 +20,16 @@ const props = defineProps({
   },
 });
 
-const check = ref(false);
-
 const eventBusForm = useEventBusGroupForm();
 const eventBusDictor = useEventBusGroupDictor();
 const eventBusDictorCard = useEventBusCardsDictor();
 
+const check = computed(() => eventBusDictorCard.hasGroup(props.value.id));
+
 const checkbox = () => {
   const { items, id, cardId } = props.value;
 
-  if (check.value) eventBusDictorCard.pushItems(items, id, cardId);
+  if (!check.value) eventBusDictorCard.pushItems(items, id, cardId);
   else eventBusDictorCard.removeItems(id, cardId);
 };
 </script>
@@ -40,7 +40,7 @@ const checkbox = () => {
       <header :class="$style.header">
         <UiCheckbox
           :class="$style['ui-checkbox']"
-          v-model="check"
+          :model-value="check"
           @update:model-value="checkbox()"
         />
         <span>{{ props.value.title || "..." }}</span>
