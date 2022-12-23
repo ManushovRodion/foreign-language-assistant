@@ -20,7 +20,7 @@
 - Если нашли ошибку, то: [просмотреть список ошибок][issues_type_bug] или [создать отчет по ошибке][form_by_client_template_bug]
 - Если есть вопросы, то: [просмотреть список вопросов][issues_type_question] или [создать вопрос][form_by_client_template_question]
 - Если есть предложения, то: [просмотреть список предложений][issues_type_suggestion] или [создать предложение][form_by_client_template_suggestion]
-- [Документация][wiki]
+<!-- - [Документация][wiki] -->
 
 ## # Функционал
 
