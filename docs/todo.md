@@ -2,12 +2,12 @@
 
 `(Принято ...issue) || (Отказано: ПРИЧИНА)`
 
-- [ ] Список элементов в виде карточек, с группами внутри
-  - [ ] Карточки (Принято [#4](https://github.com/ManushovRodion/foreign-language-assistant/issues/4)
-  - [ ] Группы (Принято [#5](https://github.com/ManushovRodion/foreign-language-assistant/issues/5))
-  - [ ] Форма добавления групп (Принято [#6](https://github.com/ManushovRodion/foreign-language-assistant/issues/6))
-  - [ ] Метки для групп (Принято [#5](https://github.com/ManushovRodion/foreign-language-assistant/issues/5), [#6](https://github.com/ManushovRodion/foreign-language-assistant/issues/6))
-  - [ ] Заголовки для групп (Принято [#4](https://github.com/ManushovRodion/foreign-language-assistant/issues/4))
+- [x] Список элементов в виде карточек, с группами внутри
+  - [x] Карточки (Принято [#4](https://github.com/ManushovRodion/foreign-language-assistant/issues/4)
+  - [x] Группы (Принято [#5](https://github.com/ManushovRodion/foreign-language-assistant/issues/5))
+  - [x] Форма добавления групп (Принято [#6](https://github.com/ManushovRodion/foreign-language-assistant/issues/6))
+  - [x] Метки для групп (Принято [#5](https://github.com/ManushovRodion/foreign-language-assistant/issues/5), [#6](https://github.com/ManushovRodion/foreign-language-assistant/issues/6))
+  - [x] Заголовки для групп (Принято [#4](https://github.com/ManushovRodion/foreign-language-assistant/issues/4))
   - [ ] Поиск по заголовкам группы
   - [ ] Поиск по заголовкам карточек
   - [ ] Поиск по меткам
@@ -15,10 +15,10 @@
   - [ ] Транскрипция для иностранных слов
   - [ ] Пагинация (Принято [#8](https://github.com/ManushovRodion/foreign-language-assistant/issues/8))
 - [ ] Диктор
-  - [ ] Текстовый (Принято [#7](https://github.com/ManushovRodion/foreign-language-assistant/issues/7))
+  - [x] Текстовый (Принято [#7](https://github.com/ManushovRodion/foreign-language-assistant/issues/7))
   - [ ] Голосовой
-  - [ ] Диалог запуска диктора (Принято [#7](https://github.com/ManushovRodion/foreign-language-assistant/issues/7))
-  - [ ] Диалог результата диктора (Принято [#7](https://github.com/ManushovRodion/foreign-language-assistant/issues/7))
+  - [x] Диалог запуска диктора (Принято [#7](https://github.com/ManushovRodion/foreign-language-assistant/issues/7))
+  - [x] Диалог результата диктора (Принято [#7](https://github.com/ManushovRodion/foreign-language-assistant/issues/7))
   - [ ] Таймер автозапуска рендерега слова/фраз для текстового диктора
   - [ ] Таймер автозапуска рендерега слова/фраз для голосового диктора
 - [ ] Бекап
@@ -44,3 +44,4 @@
   - [ ] Сервер
   - [ ] Сайт приложения
 - [ ] Wiki
+- [ ] Офлайн работа
