@@ -22,15 +22,15 @@
 ### # v[MAJOR.MINOR.PATCH]/[YYYY-MM-DD]
 
 => feats:
-1. [ID_ISSUE]: [TITLE_ISSUE]
+1. [TITLE_ISSUE]: [ID_ISSUE]
 2. ....
 
 => fixs:
-1. [ID_ISSUE]: [TITLE_ISSUE]
+1. [TITLE_ISSUE]: [ID_ISSUE]
 2. ....
 
 => other:
-1. [ID_ISSUE]: [TITLE_ISSUE]
+1. [TITLE_ISSUE]: [ID_ISSUE]
 2. ....
 ```
 
