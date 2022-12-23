@@ -1,6 +1,6 @@
 # foreign-language-assistant
 
-### # v1.0.0/[2020-12-26]
+### # v1.0.0/[2020-12-23]
 
 => feats:
 
@@ -11,3 +11,9 @@
 5. Удаление карточки без категорий: [#13](https://github.com/ManushovRodion/foreign-language-assistant/issues/13)
 6. Форма добавления групп: [#6](https://github.com/ManushovRodion/foreign-language-assistant/issues/6)
 7. Письменный диктор: [#7](https://github.com/ManushovRodion/foreign-language-assistant/issues/7)
+
+=> fixs:
+1. NONE...
+
+=> other:
+1. NONE...
