@@ -4,10 +4,10 @@
 
 => feats:
 
-1. #3: Макет приложения (layout)
-2. #4: Отображение карточек
-3. #5: Отображение групп карточки
-4. #18: Пустая карточка на любой день
-5. #13: Удаление карточки без категорий
-6. #6: Форма добавления групп
-7. #7: Письменный диктор
+1. Макет приложения (layout): [#3](https://github.com/ManushovRodion/foreign-language-assistant/issues/3)
+2. Отображение карточек: [#4](https://github.com/ManushovRodion/foreign-language-assistant/issues/4)
+3. Отображение групп карточки: [#5](https://github.com/ManushovRodion/foreign-language-assistant/issues/5)
+4. Пустая карточка на любой день: [#3](https://github.com/ManushovRodion/foreign-language-assistant/issues/18)
+5. Удаление карточки без категорий: [#13](https://github.com/ManushovRodion/foreign-language-assistant/issues/13)
+6. Форма добавления групп: [#6](https://github.com/ManushovRodion/foreign-language-assistant/issues/6)
+7. Письменный диктор: [#7](https://github.com/ManushovRodion/foreign-language-assistant/issues/7)
