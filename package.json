@@ -1,12 +1,15 @@
 {
   "name": "foreign-language-assistant",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "scripts": {
     "dev": "vite --host",
-    "build": "run-p type-check build-only",
+    "build": "run-p type-check build:site",
     "preview": "vite preview",
+    "mobile": "npx cap sync",
+    "mobile:open": "npx cap sync && npx cap open android",
     "test:unit": "vitest --environment jsdom --root src/",
-    "build-only": "vite build --base=/foreign-language-assistant/",
+    "build:site": "vite build --base=/foreign-language-assistant/",
+    "build:mobile": "vite build",
     "type-check": "vue-tsc --noEmit -p tsconfig.vitest.json --composite false",
     "lint:script": "eslint . --ext .vue,.ts,.tsx --ignore-path .gitignore --fix",
     "lint:style-vue": "stylelint src/**/*.vue --custom-syntax postcss-html --fix",
@@ -14,6 +17,8 @@
     "lint": "run-p lint:script lint:style lint:style-vue"
   },
   "dependencies": {
+    "@capacitor/android": "^4.7.3",
+    "@capacitor/core": "^4.7.3",
     "date-fns": "^2.29.3",
     "idb": "^7.1.1",
     "pinia": "^2.0.23",
@@ -21,6 +26,7 @@
     "vue-router": "^4.1.5"
   },
   "devDependencies": {
+    "@capacitor/cli": "^4.7.3",
     "@rushstack/eslint-patch": "^1.1.4",
     "@types/jsdom": "^20.0.0",
     "@types/node": "^16.11.68",
